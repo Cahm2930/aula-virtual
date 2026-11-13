@@ -1,0 +1,139 @@
+
+.dialog-pregunta {
+  width:600px;
+  color: #243447;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 8px 18px;
+  border-bottom: 1px solid #e8edf0;
+
+  .header-icono {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #e5f3eb;
+    color: #087f4b;
+
+    mat-icon {
+      font-size: 26px;
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .header-texto {
+    flex: 1;
+
+    h2 {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 5px 0 0;
+      color: #718096;
+      font-size: 13px;
+    }
+  }
+}
+
+mat-dialog-content {
+  padding-top: 22px !important;
+  min-width: 0;
+  max-height: 65vh;
+}
+
+.campo-completo {
+  width: 100%;
+}
+
+.alternativas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0 18px;
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    color: #718096;
+    margin: 5px 0 0;
+  }
+
+  .contador {
+    background: #e5f3eb;
+    color: #087f4b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.lista-alternativas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alternativa {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  mat-radio-button {
+    margin-top: 1px;
+  }
+
+  .campo-alternativa {
+    flex: 1;
+    min-width: 0;
+  }
+
+  
+}
+
+.error-correcta {
+  display: block;
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+
+.btn-agregar {
+  border-color: #087f4b;
+  color: #087f4b;
+  margin-bottom: 12px;
+}
+
+mat-dialog-actions {
+  padding: 16px 8px 8px;
+  border-top: 1px solid #e8edf0;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .alternativa {
+    gap: 2px;
+  }
+
+  .dialog-header .header-texto h2 {
+    font-size: 18px;
+  }
+
+  mat-dialog-content {
+    max-height: 60vh;
+  }
+}

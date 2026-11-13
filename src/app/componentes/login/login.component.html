@@ -1,0 +1,140 @@
+
+<!-- =========================
+     ENCABEZADO
+========================= -->
+
+<header class="encabezado-login">
+
+  <div class="encabezado-contenido">
+
+    <div class="encabezado-logo">
+
+      <img
+        id="image"
+        src="./imagenes/logoLeon.png"
+        alt="Logo León XIII"
+        class="logoImagen">
+
+      <div class="separador-logo"></div>
+
+      <h2 class="texto_fino">Aula Virtual</h2>
+
+    </div>
+
+    <div class="espaciador"></div>
+
+    <div class="registro-texto LeonHeadBold">
+      ¿Aún no tienes cuenta?
+    </div>
+
+    <div class="registro-boton-contenedor">
+
+      <div class="boton-registro LeonRegular">
+        Regístrate
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     LÍNEA SEPARADORA
+========================= -->
+
+<div class="linea-separadora"></div>
+
+
+<!-- =========================
+     CONTENIDO LOGIN
+========================= -->
+
+<main class="contenedor-login">
+
+  <div class="login-contenido">
+
+    <!-- REGRESAR -->
+
+    <div class="regresar" (click)="regresar()">
+
+      <i class="bi bi-chevron-left"></i>
+
+      <span>Regresar</span>
+
+    </div>
+
+
+    <!-- TARJETA LOGIN -->
+
+    <div class="tarjeta-login">
+
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="iniciarSesion()">
+
+        <div class="LeonHeadBold titulo-login">
+          Ingresa tus Datos
+        </div>
+
+        <div class="separacion-login"></div>
+
+
+        <!-- CORREO -->
+
+        <mat-form-field appearance="outline" class="campo-login">
+
+          <mat-label>Correo electrónico</mat-label>
+
+          <input
+            matInput
+            formControlName="email"
+            type="email">
+
+        </mat-form-field>
+
+
+        <!-- CONTRASEÑA -->
+
+        <mat-form-field appearance="outline" class="campo-login">
+
+          <mat-label>Contraseña</mat-label>
+
+          <input
+            matInput
+            type="password"
+            formControlName="password">
+
+        </mat-form-field>
+
+
+        <!-- BOTÓN INGRESAR -->
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="boton-iniciar">
+
+          Iniciar sesión
+
+        </button>
+
+
+        <div class="separacion-olvido"></div>
+
+
+        <!-- OLVIDÓ CONTRASEÑA -->
+
+        <div class="LeonHeadBold recuperar-password">
+          He olvidado mi contraseña
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</main>

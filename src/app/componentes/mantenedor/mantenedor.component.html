@@ -1,0 +1,447 @@
+
+<div class="prueba">
+ 
+
+  
+  <div class="mat-elevation-z8  contenedor" style="background-color: white;">
+ <div class="container" >
+  <div style="height: 10px;"></div>
+ <mat-tab-group dynamicHeight (selectedTabChange)="cambiarPestana($event)">
+  <mat-tab label="Capacitaciones">
+    <div style="height: 1px;background-color: rgb(212, 212, 212);"></div>
+    <div class="example-small-box mat-shadow-2">
+    
+    </div>
+  </mat-tab>
+  <mat-tab label="Cursos">
+     <div style="height: 1px;background-color: rgb(212, 212, 212);"></div>
+    <div class="example-large-box mat-shadow-2">
+    
+    </div>
+  </mat-tab>
+</mat-tab-group>
+</div>
+
+<div style="height: 10px;"></div>
+
+
+  <div *ngIf="mostrarCapacitacion"  class="contenedor" > 
+    <div class="contenedor_hijo" >
+      <div style="height: 10px;"></div>
+    
+  <form   [formGroup]="form" style="height: 60px;" >
+    <div class="contenedor_subhijo" >     
+      <div class="dense-2 contenedor_buscar">
+        <mat-form-field class="mat-form"  appearance="outline" >
+          <mat-label>Buscar capacitacion</mat-label>
+          <!-- (keydown.enter)=""  (click)="refresh()" -->
+          <input matInput  autocomplete="off"  formControlName="buscar" (keyup)="input.value = input.value.toUpperCase()"   #input>
+        </mat-form-field>
+      </div>    
+    <div class="flex"></div> 
+      <button mat-mini-fab matTooltip="Actualizar" type="button"  color="amber" class="boton" >
+       <i class="bi bi-arrow-clockwise color-icono"></i>
+      </button>
+      <span class="espacio" ></span>
+      <button mat-mini-fab color="amber" type="button"  [matMenuTriggerFor]="menu" #trigger="matMenuTrigger"  matTooltip="Filtros" class="mat-elevation-z4" class="boton" >
+        <i class="bi bi-funnel color-icono"></i>
+      </button>
+    
+      <mat-menu #menu="matMenu" class="menu-form-wrapper" >          
+        <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">    
+          <div class="contenedor-mat-menu" >   
+            <h3 class="color-icono">Filtros</h3>    
+            <div class="row" >
+              <mat-form-field class="col-12 dense-2" appearance="outline" >
+                  <mat-label>Estado</mat-label>
+                  <mat-select formControlName="tipo"  [compareWith]="comparer">
+                      <mat-option  *ngFor="let item of listaEstados" [value]="item">
+                          {{item.descripcion}}
+                      </mat-option>
+                  </mat-select>    
+              </mat-form-field>
+                      
+             </div>          
+          </div>      
+        </div>      
+      </mat-menu>
+      <button mat-raised-button color="primary" type="button" class="boton_req"  (click)="mantenedorCapacitacion()" >
+        <i class="bi bi-plus-lg"></i>
+        Nuevo capacitación</button>
+        <div class="espacio_req"></div>
+      </div>
+</form>
+
+ 
+
+   <div style=" height: 410px;
+    overflow-y: auto;
+    overflow-x: auto;
+    position: relative;" >
+  <div class="contenedor_spinner" *ngIf="cargando" >
+   <mat-spinner class="spinner color_icono" strokeWidth="3" color="#FFA500" diameter="60" >Cargando</mat-spinner>   
+  </div>
+  <table class="tableResponsive" mat-table [dataSource]="listarCapacitaciones" matSort  style="height: auto;">
+    
+              <ng-container matColumnDef="col1">
+                <th (click)="ordenar()" mat-header-cell *matHeaderCellDef class="mat-header-fecha" ><div class="flexbox"><a>Fecha registro </a></div>                
+              </th>               
+              <td mat-cell *matCellDef="let element" class="center" >        
+                   <div class="container_fecha" >
+                    <div class="padding_4">{{element?.fechaCreacion | date:'yyyy-MM-dd'  }}</div> 
+                    <div class="color_gris" > {{element?.fechaCreacion | date: 'hh:mm a'  }}</div>                              
+                   </div>
+              </td>
+              </ng-container>  
+
+
+              <ng-container matColumnDef="col2" >
+                <th mat-header-cell *matHeaderCellDef class="mat-header-area" >
+                    Estado
+                </th>
+                <td mat-cell  class="mat-cell" *matCellDef="let element" >               
+                      <ng-template [ngIf]="element.estado === 'BORRADOR'">
+                        <div class="pendiente" >
+                           Pendiente
+                          </div>
+                      </ng-template>                        
+                      <ng-template [ngIf]="element.estado.idEstDoc === 'PUBLICADO'"  >
+                        <div class="contenedor_ob" >
+                        <div class="observacion" >
+                           Observado
+                           </div>                           
+                        </div>
+                      </ng-template>  
+                      <ng-template [ngIf]="element.estado.idEstDoc === 'NO PUBLICADO'">
+                          <div class="estadoActivo" >
+                             Aceptado
+                          </div>
+                      </ng-template>                       
+                        
+                        <ng-template [ngIf]="element.estado.idEstDoc === '05' "  >
+                          <div class="contenedor_rechazado">
+                            <div class="rechazado" >
+                              Rechazado
+                              </div>
+                            
+                          </div>
+                        </ng-template>                                          
+              </td>        
+              </ng-container>
+                       
+              <ng-container matColumnDef="col3">
+                <th mat-header-cell *matHeaderCellDef class="mat-header-requ" >Titulo de la capacitación</th>            
+                <td mat-cell *matCellDef="let element" class="izquierda"  > 
+                   <div class="flex-colum">
+                    <div class="contorno" >
+                      {{element.titulo  }} 
+                    </div>
+                   
+
+                  </div>               
+              </td>
+              </ng-container>        
+             
+             <ng-container matColumnDef="col4">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-compra" >Descripción</th>            
+              <td   mat-cell *matCellDef="let element" class="texto_center">
+                  <div class="padding_4">{{element.descripcion}}</div>              
+              </td>
+             </ng-container>
+             
+             <!--
+              <ng-container matColumnDef="col5">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-gaf" >Evalución</th>            
+              <td mat-cell *matCellDef="let element" class="alinear_center" >
+              
+                          <div class="icon_pendiente" >
+                            Si
+                          </div>
+                       
+                       
+                       
+            </td> 
+             </ng-container>
+             <ng-container matColumnDef="col6">
+              <th mat-header-cell *matHeaderCellDef  class="mat-header-planeamiento">  Contenido</th>
+              <td   mat-cell *matCellDef="let element" class="texto_center">
+                  <div class="flex_justificacion" > 
+
+                     
+                          <div class="icon_no" >
+                            PDF,Video
+                          </div>
+                       
+                  </div>   
+            </td>
+             </ng-container>
+              -->
+             <ng-container matColumnDef="col5">                   
+                <th mat-header-cell *matHeaderCellDef  class="mat-header-acciones"> Acciones</th>
+                <td  class="acciones" mat-cell *matCellDef="let element" style="text-align:center;width: 40px ;" >  
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="mantenedorCapacitacion(element)" >
+                    <div class="flex-middle" >
+                      <i class="bi bi-pencil-square size-color"></i>              
+                      <span class="margin-left" >Editar</span>
+                  </div>                 
+                </button>   
+                <!--
+                  <button mat-menu-item (click)="verDetalle(element)">
+                  <mat-icon style="color: #00467D;">list_alt</mat-icon> Ver Detalle
+                  </button>            
+                -->
+                </mat-menu>
+                </td>
+              </ng-container>
+
+           
+        
+  <tr class="blanco" mat-header-row *matHeaderRowDef="displayedcolumnsCapacitacion;sticky: true"></tr>
+  <tr class="tr2" mat-row *matRowDef="let row;let i = index; columns: displayedcolumnsCapacitacion;"  (mouseout)="fueratabla()" (mouseover)="highlightRow(i)" [class.filahover]="i == filahov"
+  [class.selected-row]="i == HighlightRow" ></tr>
+  <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4"> </td>
+  </tr>
+       </table>       
+    </div>
+    <mat-divider *ngIf="tabla1"></mat-divider>
+<mat-paginator
+  *ngIf="tabla1"
+  class="mat-paginador"
+  [length]="totalElements"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  (page)="onPageChange($event)" >
+</mat-paginator>
+ 
+  </div>
+  </div>
+
+  <div *ngIf="mostrarCurso"  class="contenedor" > 
+    <div class="contenedor_hijo" >
+      <div style="height: 10px;"></div>    
+  <form   [formGroup]="form" style="height: 60px;" >
+    <div class="contenedor_subhijo" >     
+      <div class="dense-2 contenedor_buscar">
+        <mat-form-field class="mat-form"  appearance="outline" >
+          <mat-label>Buscar curso</mat-label>
+          <!-- (keydown.enter)=""  (click)="refresh()" -->
+          <input matInput  autocomplete="off"  formControlName="buscar" (keyup)="input.value = input.value.toUpperCase()"   #input>
+        </mat-form-field>
+      </div>    
+    <div class="flex"></div> 
+      <button mat-mini-fab matTooltip="Actualizar" type="button"  color="amber" class="boton" >
+       <i class="bi bi-arrow-clockwise color-icono"></i>
+      </button>
+      <span class="espacio" ></span>
+      <button mat-mini-fab color="amber" type="button"  [matMenuTriggerFor]="menu" #trigger="matMenuTrigger"  matTooltip="Filtros" class="mat-elevation-z4" class="boton" >
+        <i class="bi bi-funnel color-icono"></i>
+      </button>
+    
+      <mat-menu #menu="matMenu" class="menu-form-wrapper" >          
+        <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">    
+          <div class="contenedor-mat-menu" >   
+            <h3 class="color-icono">Filtros</h3>    
+            <div class="row" >
+              <mat-form-field class="col-12 dense-2" appearance="outline" >
+                  <mat-label>Estado</mat-label>
+                  <mat-select formControlName="tipo"  [compareWith]="comparer">
+                      <mat-option  *ngFor="let item of listaEstados" [value]="item">
+                          {{item.descripcion}}
+                      </mat-option>
+                  </mat-select>    
+              </mat-form-field>
+                      
+             </div>          
+          </div>      
+        </div>      
+      </mat-menu>
+      <button mat-raised-button color="primary" type="button" class="boton_req"  (click)="mantenedor()" >
+        <i class="bi bi-plus-lg"></i>
+        Nuevo curso</button>
+        <div class="espacio_req"></div>
+      </div>
+</form>
+
+ 
+
+   <div >
+  <div class="contenedor_spinner" *ngIf="cargando" >
+   <mat-spinner class="spinner color_icono" strokeWidth="3" color="#FFA500" diameter="60" >Cargando</mat-spinner>   
+  </div>
+  <table class="tableResponsive" mat-table [dataSource]="listarCursos" matSort>
+    
+              <ng-container matColumnDef="col1">
+                <th (click)="ordenar()" mat-header-cell *matHeaderCellDef class="mat-header-fecha" ><div class="flexbox"><a>Fecha registro </a></div>                
+              </th>               
+              <td mat-cell *matCellDef="let element" class="center" >        
+                   <div class="container_fecha" >
+                    <div class="padding_4">{{element?.fechaCreacion | date:'yyyy-MM-dd'  }}</div> 
+                    <div class="color_gris" > {{element?.fechaCreacion | date: 'hh:mm a'  }}</div>                              
+                   </div>
+              </td>
+              </ng-container>  
+
+
+              <ng-container matColumnDef="col2" >
+                <th mat-header-cell *matHeaderCellDef class="mat-header-area" >
+                    Estado
+                </th>
+                <td mat-cell  class="mat-cell" *matCellDef="let element" >               
+                      <ng-template [ngIf]="element.estado === 'BORRADOR'">
+                        <div class="pendiente" >
+                           Pendiente
+                          </div>
+                      </ng-template>                        
+                      <ng-template [ngIf]="element.estado.idEstDoc === 'PUBLICADO'"  >
+                        <div class="contenedor_ob" >
+                        <div class="observacion" >
+                           Observado
+                           </div>                           
+                        </div>
+                      </ng-template>  
+                      <ng-template [ngIf]="element.estado.idEstDoc === 'NO PUBLICADO'">
+                          <div class="estadoActivo" >
+                             Aceptado
+                          </div>
+                      </ng-template>                       
+                        
+                        <ng-template [ngIf]="element.estado.idEstDoc === '05' "  >
+                          <div class="contenedor_rechazado">
+                            <div class="rechazado" >
+                              Rechazado
+                              </div>
+                            
+                          </div>
+                        </ng-template>                                          
+              </td>        
+              </ng-container>
+                       
+              <ng-container matColumnDef="col3">
+                <th mat-header-cell *matHeaderCellDef class="mat-header-requ" >Titulo del Curso</th>            
+                <td mat-cell *matCellDef="let element" class="izquierda"  > 
+                   <div class="flex-colum">
+                    <div class="contorno" >
+                      {{element.titulo  }} 
+                    </div>
+                   
+
+                  </div>               
+              </td>
+              </ng-container>        
+              <ng-container matColumnDef="col4">
+                <th mat-header-cell class="mat-header-area" *matHeaderCellDef >Modulos</th>
+              
+                <td   mat-cell *matCellDef="let element"  class="mat-izquierda" > 
+                    
+                   <div class="flex-colum">
+                   4
+                    
+                   </div> 
+                            
+              </td> 
+             </ng-container>  
+             <ng-container matColumnDef="col5">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-compra" >leccion</th>            
+              <td   mat-cell *matCellDef="let element" class="texto_center">
+                  <div class="padding_4"> 20</div>              
+              </td>
+             </ng-container>
+              <ng-container matColumnDef="col6">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-gaf" >Evalución</th>            
+              <td mat-cell *matCellDef="let element" class="alinear_center" >
+                <!-- [ngIf]="element.aceptacionGaf.idEstDoc =='03'" -->
+                      
+                          <div class="icon_pendiente" >
+                            Si
+                          </div>
+                       
+                       <!--
+                        <ng-template >
+                          <div class="icon_aceptado" >
+                             NO
+                            </div>
+                        </ng-template>                        
+                        <ng-template  >
+                         
+                          <div class="icon_observado" >
+                             O
+                             </div>
+                           
+                          
+                        </ng-template>   
+                    -->
+                       
+            </td> 
+             </ng-container>
+             <ng-container matColumnDef="col7">
+              <th mat-header-cell *matHeaderCellDef  class="mat-header-planeamiento">  Contenido</th>
+              <td   mat-cell *matCellDef="let element" class="texto_center">
+                  <div class="flex_justificacion" > 
+
+                     
+                          <div class="icon_no" >
+                            PDF,Video
+                          </div>
+                        <!--
+                        <ng-template [ngIf]="element.aceptacionPla ==true">
+                          <div class="icon_check">
+                              <i class="bi bi-check icon_color_check"  ></i>
+                            </div>
+                        </ng-template> 
+                    -->
+                  </div>   
+            </td>
+             </ng-container>
+             <ng-container matColumnDef="col8">                   
+                <th mat-header-cell *matHeaderCellDef  class="mat-header-acciones"> Acciones</th>
+                <td  class="acciones" mat-cell *matCellDef="let element" style="text-align:center;width: 40px ;" >  
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="mantenedor(element)" >
+                    <div class="flex-middle" >
+                      <i class="bi bi-pencil-square size-color"></i>              
+                      <span class="margin-left" >Editar</span>
+                  </div>                 
+                </button>   
+                  <button mat-menu-item (click)="verDetalle(element)">
+                  <mat-icon style="color: #00467D;">list_alt</mat-icon> Ver Detalle
+                </button>            
+                            
+                </mat-menu>
+                </td>
+              </ng-container>
+        
+  <tr class="blanco" mat-header-row *matHeaderRowDef="displayedcolumns;sticky: true"></tr>
+  <tr class="tr2" mat-row *matRowDef="let row;let i = index; columns: displayedcolumns;"  (mouseout)="fueratabla()" (mouseover)="highlightRow(i)" [class.filahover]="i == filahov"
+  [class.selected-row]="i == HighlightRow" ></tr>
+  <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4"> </td>
+  </tr>
+       </table>       
+    </div>
+    <mat-divider *ngIf="tabla1"></mat-divider>
+<mat-paginator
+  *ngIf="tabla1"
+  class="mat-paginador"
+  [length]="totalElements"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  (page)="onPageChange($event)"
+>
+</mat-paginator>
+    
+    
+  </div>
+  </div>
+
+
+
+  </div>
+</div>

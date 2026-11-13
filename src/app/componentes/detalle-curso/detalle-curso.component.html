@@ -1,0 +1,140 @@
+
+<div class="marco" >
+
+      <div style="height:calc(100% - 0px);margin: 0px 8px 8px 8px;box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;border-radius: 18px;">
+            <div style="height: 100%;background-color: white;border-radius: 18px;">
+<div style="height: 20px;">
+</div>
+<form [formGroup]="form" >
+<h3 style="padding: 10px 20px;">Agregar curso</h3>
+<div class="container">
+
+     <div style="display: flex;justify-content: center;padding: 12px;border: 1px solid rgb(209, 209, 209);border-radius: 12px;" >
+      <mat-slide-toggle style="font-size: 20px; transform: scale(1.2);"
+          class="example-margin"
+          [checked]="checked"
+          [disabled]="disabled">
+        Para socios
+      </mat-slide-toggle>
+      <div style="width: 160px;"></div>
+      <mat-slide-toggle style=" transform: scale(1.2);font-size: 20px;"
+          class="example-margin"
+          [checked]="checked"
+          [disabled]="disabled">
+        Para colaboradores
+      </mat-slide-toggle>
+    </div>
+  
+    
+  <div style="display: flex;background-color: var(--fondoBackground) ;border-radius: 20px;padding: 18px;flex-direction: column;margin-top: 20px; "> 
+    <h4 style="font-size: 16px;color: rgb(91, 90, 90); ">Información del curso</h4>
+        <div class="row mt-3" style="width: 100%;"> 
+            <div class="col-6" > 
+                    <div class="dense-2">                    
+                            <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                                <mat-label>Titulo del curso</mat-label>
+                                <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                            </mat-form-field>                    
+                    </div>
+            </div>  
+            <div class="col-6" > 
+                <div class="dense-2">
+                        <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                            <mat-label>Descripción del curso</mat-label>
+                            <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                        </mat-form-field>
+                </div>
+            </div>           
+        </div>
+  </div>
+     <div style="height: 20px;"></div>
+
+     <div style="display: flex;background-color: var(--fondoBackground) ;border-radius: 20px;padding: 18px;flex-direction: column; "> 
+    <h4 style="font-size: 16px;color: rgb(91, 90, 90); ">Modulos del curso</h4>
+        <div class="row mt-3" style="justify-content: center;"> 
+            <div class="col-10" > 
+                    <div class="dense-2">                    
+                            <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                                <mat-label>Nombre del modulo</mat-label>
+                                <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                            </mat-form-field>                    
+                    </div>
+            </div>  
+            <div class="col-2" > 
+                 <button mat-stroked-button  style="height: 45px;">Agregar Modulo</button>
+                 <!--
+                <div class="dense-2">
+                        <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                            <mat-label>Descripción del curso</mat-label>
+                            <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                        </mat-form-field>
+                </div>
+                -->
+            </div>           
+        </div>
+
+     <div class="container" style="max-width: 900px;border: 1px solid rgb(213, 213, 213); border-radius: 18px; padding: 12px 10px;">
+                        <div style="display: flex;">
+                        <div style="display: flex; font-size: 20px;font-weight: 600;color: rgb(106, 124, 255);margin-inline: 20px;justify-content: center;align-items: center;"> MODULO I : INTRODUCCION</div>
+                        <div style="flex: 1;"></div>
+                        <button  mat-icon-button  style="display: grid;place-content: center;">
+                         <i class="bi bi-three-dots-vertical" style="color: rgb(106, 124, 255) ;"></i>
+                      </button>
+                        </div>
+
+                        <div class="mt-2" style="display: flex; background-color: white;height: 100px;border-radius: 12px;padding: 8px;">
+                            <div style="display: flex;width: 100%;">
+                            <div class="mt-1"  >Leccion I : Introduccion del curso</div>
+                            <div style="flex: 1;"></div>
+                            <button type="button" class="btn btn-success" style="height: 30px;" (click)="archivoInput.click()">
+                            <i class="bi bi-upload"></i>
+                            
+                            </button>
+
+                            <input #archivoInput type="file" hidden (change)="seleccionarArchivo($event)" />
+                            </div>
+                                                    
+                            </div>
+                                </div>
+     
+     <div style="height: 50px;"></div>
+     
+     </div>
+     <div style="height: 20px;"></div>
+       <div style="display: flex;background-color: var(--fondoBackground) ;border-radius: 20px;padding: 18px;flex-direction: column; "> 
+    <h4 style="font-size: 16px;color: rgb(91, 90, 90); ">Evaluación del curso</h4>
+        <div class="row mt-3" style="width: 100%;"> 
+            <div class="col-5" > 
+                    <div class="dense-2">                    
+                            <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                                <mat-label>Descripción de la evaluacion</mat-label>
+                                <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                            </mat-form-field>                    
+                    </div>
+            </div>  
+            <div class="col-5" > 
+                <div class="dense-2">
+                        <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                            <mat-label>Tiempo de evaluación</mat-label>
+                            <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                        </mat-form-field>
+                </div>
+            </div>
+            <div class="col-2">
+                 <button mat-stroked-button  style="height: 45px;" (click)="agregarPregunta()" >Agregar pregunta</button>
+            </div>          
+        </div>
+  </div>
+     <div style="height: 30px;"></div>
+     <div style="display: flex;justify-content: center;">
+        <button mat-raised-button color="warn" style="width: 100%;max-width: 400px;">Guardar</button>
+     </div>
+    
+     <div style="height: 30px;">        
+     </div>
+     </div>
+  </form>
+  
+  </div>
+  </div>
+</div>

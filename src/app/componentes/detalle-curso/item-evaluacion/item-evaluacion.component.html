@@ -1,0 +1,130 @@
+
+<div class="dialog-pregunta">
+
+  <div class="dialog-header" style="padding: 0;">
+   
+    <div class="header-texto">
+      <h2 mat-dialog-title>Crear pregunta</h2>
+      
+    </div>
+
+   
+  </div>
+
+  <mat-dialog-content>
+    <div style="height: 10px;"></div>
+    <form [formGroup]="formulario">
+
+      <mat-form-field appearance="outline" class="campo-completo">
+        <mat-label>Enunciado de la pregunta</mat-label>
+
+        <textarea
+          matInput
+          formControlName="pregunta"
+          rows="3"
+          placeholder="Pregunta">
+        </textarea>
+
+        <mat-error
+          *ngIf="formulario.get('pregunta')?.hasError('required')">
+          Ingresa el enunciado de la pregunta.
+        </mat-error>
+
+        <mat-error
+          *ngIf="formulario.get('pregunta')?.hasError('minlength')">
+          La pregunta debe tener al menos 5 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="alternativas-header">
+        <div>
+          <h3>Alternativas de respuesta</h3>
+          <p>Selecciona el círculo de la respuesta correcta.</p>
+        </div>
+
+           <button
+        mat-stroked-button
+        type="button"
+        class="btn-agregar"
+        [disabled]="alternativas.length >= 6"
+        (click)="agregarAlternativa()">
+
+       <i class="bi bi-plus-lg"></i>
+        Agregar alternativa
+      </button>
+<!--
+        <span class="contador">
+          {{ alternativas.length }} / 6
+        </span>
+    -->
+      </div>
+
+      <mat-radio-group
+        formControlName="respuestaCorrecta"
+        class="lista-alternativas">
+
+        <div
+          class="alternativa"
+          *ngFor="let alternativa of alternativas.controls; let i = index">
+
+          <mat-radio-button [value]="i" style="margin-right: 10px;">
+            {{ String.fromCharCode(65 + i) }}
+          </mat-radio-button>
+
+          <mat-form-field appearance="outline" class="campo-alternativa dense-2">
+            <mat-label>
+              Alternativa {{ String.fromCharCode(65 + i) }}
+            </mat-label>
+
+            <input
+              matInput
+              [formControl]="alternativa"
+              placeholder="Escribe una alternativa">
+
+            <mat-error *ngIf="alternativa.hasError('required')">
+              Escribe esta alternativa.
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-icon-button
+            type="button"
+            color="warn"
+            aria-label="Eliminar alternativa"
+            [disabled]="alternativas.length <= 2"
+            (click)="eliminarAlternativa(i)">
+           <i class="bi bi-trash3" style="font-size: 20px;"></i>
+          </button>
+
+        </div>
+      </mat-radio-group>
+
+      <mat-error
+        class="error-correcta"
+        *ngIf="formulario.get('respuestaCorrecta')?.touched &&
+               formulario.get('respuestaCorrecta')?.hasError('required')">
+        Selecciona la respuesta correcta.
+      </mat-error>
+
+   
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="cancelar()">
+      Cancelar
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      (click)="guardarPregunta()">
+
+      
+      Guardar pregunta
+    </button>
+  </mat-dialog-actions>
+
+</div>

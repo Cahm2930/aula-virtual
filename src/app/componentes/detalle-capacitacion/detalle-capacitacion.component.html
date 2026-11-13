@@ -1,0 +1,223 @@
+
+<div class="marco" >
+
+      <div style="height:calc(100% - 0px);margin: 0px 8px 8px 8px;box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;border-radius: 18px;">
+            <div style="height: 100%;background-color: white;border-radius: 18px;">
+<div style="height: 20px;">
+</div>
+<form [formGroup]="form"    >
+<h3 style="padding: 10px 20px;">Agregar capacitación</h3>
+<div class="container">
+
+     <div style="display: flex;justify-content: center;padding: 12px;border: 1px solid rgb(209, 209, 209);border-radius: 12px;" >
+      <mat-slide-toggle style="font-size: 20px; transform: scale(1.2);"
+          class="example-margin"
+          [checked]="checked"
+          [disabled]="disabled">
+        Para socios
+      </mat-slide-toggle>
+      <div style="width: 160px;"></div>
+      <mat-slide-toggle style=" transform: scale(1.2);font-size: 20px;"
+          class="example-margin"
+          [checked]="checked"
+          [disabled]="disabled">
+        Para colaboradores
+      </mat-slide-toggle>
+    </div>
+ 
+  <div style="display: flex;background-color: var(--fondoBackground) ;border-radius: 20px;padding: 18px;flex-direction: column;margin-top: 20px; "> 
+    <h4 style="font-size: 16px;color: rgb(91, 90, 90); ">Información de capacitación</h4>
+        <div class="row mt-3" style="width: 100%;"> 
+            <div class="col-6" > 
+                    <div class="dense-2">                    
+                            <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                                <mat-label>Titulo de la capacitación</mat-label>
+                                <input matInput   formControlName="nombreCapacitacion"  oninput="this.value = this.value.toUpperCase()"/>
+                            </mat-form-field>                    
+                    </div>
+            </div>  
+            <div class="col-6" > 
+                <div class="dense-2">
+                        <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                            <mat-label>Descripción de la capacitación</mat-label>
+                            <input matInput   formControlName="descripcionCapacitacion"  oninput="this.value = this.value.toUpperCase()"/>
+                        </mat-form-field>
+                </div>
+            </div>           
+        </div>
+  </div>
+     <div style="height: 20px;"></div>
+
+    <div style="display: flex;background-color: var(--fondoBackground) ;border-radius: 20px;padding: 18px;flex-direction: column; "> 
+    <div style="display: flex;">
+        <h4 style="font-size: 16px;color: rgb(91, 90, 90); padding: 0px 20px;">Leccion de capacitación</h4>
+        <div style="flex: 1;"></div>
+       <button mat-raised-button color="primary" (click)="nuevaLeccion()" >Nueva lección</button>
+    </div>
+
+    <!--
+        <div class="row mt-3" style="justify-content: center;"> 
+            <div class="col-10" > 
+                    <div class="dense-2">                    
+                            <mat-form-field appearance="outline" style="width: 100%;font-size: 13px;">
+                                <mat-label>Nombre del modulo</mat-label>
+                                <input matInput   formControlName="nombreCurso"  oninput="this.value = this.value.toUpperCase()"/>
+                            </mat-form-field>                    
+                    </div>
+            </div>  
+            <div class="col-2" > 
+                 <button mat-stroked-button  style="height: 45px;">Agregar Modulo</button>
+                 
+            </div>           
+        </div>
+    -->
+
+    <div style="height: 20px;"></div>
+     <div class="container" >
+
+       <table class="tableResponsive" mat-table [dataSource]=" listaLeccionesAux" matSort>
+            <!--
+              <ng-container matColumnDef="col1">
+                <th (click)="ordenar()" mat-header-cell *matHeaderCellDef class="mat-header-fecha" ><div class="flexbox"><a>Fecha registro </a></div>                
+              </th>               
+              <td mat-cell *matCellDef="let element" class="center" >        
+                   <div class="container_fecha" >
+                    <div class="padding_4">{{element?.fechaCreacion | date:'yyyy-MM-dd'  }}</div> 
+                    <div class="color_gris" > {{element?.fechaCreacion | date: 'hh:mm a'  }}</div>                              
+                   </div>
+              </td>
+              </ng-container>  
+
+
+              <ng-container matColumnDef="col2" >
+                <th mat-header-cell *matHeaderCellDef class="mat-header-area" >
+                    Estado
+                </th>
+                <td mat-cell  class="mat-cell" *matCellDef="let element" >               
+                      <ng-template [ngIf]="element.estado === 'BORRADOR'">
+                        <div class="pendiente" >
+                           Pendiente
+                          </div>
+                      </ng-template>                        
+                      <ng-template [ngIf]="element.estado.idEstDoc === 'PUBLICADO'"  >
+                        <div class="contenedor_ob" >
+                        <div class="observacion" >
+                           Observado
+                           </div>                           
+                        </div>
+                      </ng-template>  
+                      <ng-template [ngIf]="element.estado.idEstDoc === 'NO PUBLICADO'">
+                          <div class="estadoActivo" >
+                             Aceptado
+                          </div>
+                      </ng-template>                       
+                        
+                        <ng-template [ngIf]="element.estado.idEstDoc === '05' "  >
+                          <div class="contenedor_rechazado">
+                            <div class="rechazado" >
+                              Rechazado
+                              </div>
+                            
+                          </div>
+                        </ng-template>                                          
+              </td>        
+              </ng-container>
+                       
+              <ng-container matColumnDef="col3">
+                <th mat-header-cell *matHeaderCellDef class="mat-header-requ" >Titulo de la capacitación</th>            
+                <td mat-cell *matCellDef="let element" class="izquierda"  > 
+                   <div class="flex-colum">
+                    <div class="contorno" >
+                      {{element.titulo  }} 
+                    </div>
+                   
+
+                  </div>               
+              </td>
+              </ng-container>      
+            -->  
+             
+             <ng-container matColumnDef="col1">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-compra" >leccion</th>            
+              <td   mat-cell *matCellDef="let element" class="texto_center">
+                  <div class="padding_4"> {{element.pregunta}}</div>              
+              </td>
+             </ng-container>
+              <ng-container matColumnDef="col2">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-gaf" >PDFs</th>            
+              <td mat-cell *matCellDef="let element" class="alinear_center" >
+                <!-- [ngIf]="element.aceptacionGaf.idEstDoc =='03'" -->
+                      
+                          <div class="icon_pendiente" >
+                           {{element.documentos?.length}}
+                          </div>
+                       
+                
+                       
+            </td> 
+             </ng-container>
+
+             
+             <ng-container matColumnDef="col3">
+              <th mat-header-cell *matHeaderCellDef  class="mat-header-planeamiento">  Videos</th>
+              <td   mat-cell *matCellDef="let element" class="texto_center">
+                  <div class="flex_justificacion" > 
+    
+                          <div class="icon_no" >
+                            {{element.alternativas?.length}}
+                          </div>
+
+
+                  </div>   
+            </td>
+             </ng-container>
+             <ng-container matColumnDef="col4">                   
+                <th mat-header-cell *matHeaderCellDef  class="mat-header-acciones"> Acciones</th>
+                <td  class="acciones" mat-cell *matCellDef="let element" style="text-align:center;width: 40px ;" >  
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item  >
+                    <div class="flex-middle" >
+                      <i class="bi bi-trash size-color" style="color :red"></i>              
+                      <span class="margin-left" >Eliminar</span>
+                    </div>                 
+                </button>   
+                <button mat-menu-item>
+                    <div class="flex-middle" >
+                      <i class="bi bi-eye size-color"></i>         
+                      <span class="margin-left" >Detalle</span>
+                    </div>                  
+                </button>                             
+               </mat-menu>             
+            </td>  
+           </ng-container>
+  <tr class="blanco" mat-header-row *matHeaderRowDef="displayedcolumnsCapacitacion;sticky: true"></tr>
+  <tr class="tr2" mat-row *matRowDef="let row;let i = index; columns: displayedcolumnsCapacitacion;"  (mouseout)="fueratabla()" (mouseover)="highlightRow(i)" [class.filahover]="i == filahov"
+  [class.selected-row]="i == HighlightRow" ></tr>
+  <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4"> </td>
+   </tr>
+
+     </table>      
+     </div>
+         <div style="height: 50px;"></div>
+     </div>
+    
+     <div style="display: flex;flex-direction: column; flex:none; font-size: 12px; font-weight: 200; "></div>
+     <div style="height: 30px;"></div>
+     <div style="display: flex;justify-content: center;">
+        <button mat-raised-button color="warn" style="width: 100%;max-width: 400px;" (click)="guardarCapacitacion()"  [disabled]="form.invalid" >Guardar</button>
+     </div>    
+     <div style="display: flex; justify-content: center;; "></div>
+      <div style="height: 30px;"> 
+    
+
+     </div>
+     </div>
+       
+  </form>  
+  </div>
+  </div>
+</div>

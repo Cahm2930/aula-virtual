@@ -1,0 +1,387 @@
+<!-- =========================================
+     VISTA 1: LISTADO DE CAPACITACIONES
+========================================= -->
+
+<div *ngIf="mostrar1" class="marco">
+
+  <div class="panel-capacitaciones">
+    <div class="panel-interior">
+
+      <div class="container-fluid p-4 contenedor-capacitaciones">
+
+        <!-- Cabecera -->
+        <div class="cabecera-capacitaciones">
+
+          <div class="titulo-capacitaciones">
+            <div class="LeonHeadBold titulo-principal">
+              Capacitaciones
+            </div>
+
+            <div class="subtitulo-capacitaciones">
+              Explora y continúa tu aprendizaje
+            </div>
+          </div>
+
+          <div class="espaciador"></div>
+
+          <!-- Buscador -->
+          <form [formGroup]="form" class="form-buscador">
+
+            <mat-form-field
+              class="dense-2 buscador-capacitaciones"
+              appearance="outline">
+
+              <mat-label>Buscar tema</mat-label>
+
+              <input
+                formControlName="buscar"
+                matInput
+                autocomplete="off">
+
+            </mat-form-field>
+
+          </form>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- Listado de cursos -->
+        <div class="lista-cursos">
+
+          <div
+            *ngIf="cursosPaginados.length === 0"
+            class="sin-cursos">
+
+            No hay cursos disponibles
+
+          </div>
+
+          <div
+            class="curso-card"
+            *ngFor="let curso of cursosPaginados"
+            (click)="seleccionarCapacitacion(curso)">
+
+            <!-- Icono -->
+            <div
+              class="curso-icono"
+              [style.background]="curso.color">
+
+              <i [class]="curso.icono"></i>
+
+            </div>
+
+            <!-- Información -->
+            <div class="curso-info">
+
+              <div class="LeonHeadBold curso-titulo">
+                {{ curso.titulo | titlecase }}
+              </div>
+
+              <p class="curso-descripcion">
+                {{ curso.descripcion }}
+              </p>
+
+              <span
+                class="badge-curso"
+                [style.background]="curso.colorBadge"
+                [style.color]="curso.colorTextoBadge">
+
+                <i class="bi bi-circle-fill"></i>
+                {{ curso.categoria }}
+
+              </span>
+
+            </div>
+
+            <!-- Fecha -->
+            <div class="curso-fecha">
+
+              <div class="fecha-icono">
+                <i class="bi bi-calendar3"></i>
+              </div>
+
+              <div class="fecha-informacion">
+
+                <small>Última actualización</small>
+
+                <strong>
+                  {{ curso.fecha | date:'dd/MM/yyyy' }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Paginación -->
+        <div class="paginacion" *ngIf="cursosPaginados.length > 0">
+
+          <button
+            class="btn-page"
+            type="button"
+            (click)="paginaAnterior()"
+            [disabled]="paginaActual === 1">
+
+            <i class="bi bi-chevron-left"></i>
+
+          </button>
+
+          <button
+            *ngFor="let pagina of paginas"
+            class="btn-page"
+            type="button"
+            [class.activa]="pagina === paginaActual"
+            (click)="irPagina(pagina)">
+
+            {{ pagina }}
+
+          </button>
+
+          <button
+            class="btn-page"
+            type="button"
+            (click)="paginaSiguiente()"
+            [disabled]="paginaActual === totalPaginas">
+
+            <i class="bi bi-chevron-right"></i>
+
+          </button>
+
+          <span class="texto">
+            Mostrando {{ inicio }} a {{ fin }} de {{ totalCursos }} cursos
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =========================================
+     VISTA 2: DETALLE DE CAPACITACIÓN
+========================================= -->
+
+<div *ngIf="mostrar2" class="marco">
+
+  <div class="panel-capacitaciones">
+    <div class="panel-interior">
+
+      <div class="container-fluid p-4 contenedor-capacitaciones">
+
+        <!-- Cabecera -->
+        <div class="cabecera-detalle">
+
+          <div class="registro-icono-principal">
+
+            <i class="bi bi-journal-bookmark"></i>
+
+          </div>
+
+          <div class="titulo-detalle">
+
+            <div class="LeonHeadBold nombre-capacitacion">
+              {{ nombreCapacitacion | titlecase }}
+            </div>
+
+            <div class="subtitulo-capacitaciones">
+              Explora y continúa tu aprendizaje
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- Contenido de lecciones -->
+        <div class="contenedor-lecciones">
+
+          <div class="espacio-lecciones"></div>
+
+          <div
+            class="registro-card"
+            *ngFor="let leccion of Listalecciones">
+
+            <!-- Encabezado de lección -->
+            <div
+              class="registro-header"
+              (click)="toggleLeccion(leccion.idleccion)">
+
+              <div class="registro-icono">
+
+                <i class="bi bi-clipboard-check"></i>
+
+              </div>
+
+              <div class="registro-titulo">
+
+                <strong>
+                  {{ leccion.titulo }}
+                </strong>
+
+              </div>
+
+              <div class="registro-fecha">
+                {{ leccion.fecha }}
+              </div>
+
+              <button
+                class="btn-expandir"
+                type="button"
+                (click)="toggleLeccion(leccion.idleccion); $event.stopPropagation()"
+                [attr.aria-expanded]="leccionExpandida === leccion.idleccion">
+
+                <i
+                  class="bi"
+                  [ngClass]="leccionExpandida === leccion.idleccion
+                    ? 'bi-chevron-up'
+                    : 'bi-chevron-down'">
+                </i>
+
+              </button>
+
+            </div>
+
+            <!-- Contenido expandible -->
+            <div
+              class="registro-contenido"
+              *ngIf="leccionExpandida === leccion.idleccion">
+
+              <p>
+                {{ leccion.descripcion }}
+              </p>
+
+              <!-- Título de recursos -->
+              <div class="documentos-titulo">
+
+                <i class="bi bi-paperclip"></i>
+                Documentos y recursos
+
+              </div>
+
+              <!-- Listado de recursos -->
+              <div
+                *ngFor="let recurso of leccion.recursos">
+
+                <!-- VIDEO -->
+                <div *ngIf="recurso.tipoRecurso === 'VIDEO'">
+
+                  <div class="documento-item">
+
+                    <i class="bi bi-youtube icono-pdf"></i>
+
+                    <div
+                      class="documento-info"
+                      (click)="abrirVideo(recurso.nombreOriginal)">
+
+                      <strong>
+                        {{ recurso.nombreOriginal }}
+                      </strong>
+
+                      <small>Video</small>
+
+                    </div>
+
+                    <button
+                      class="btn-documento"
+                      type="button">
+
+                      <i class="bi bi-download"></i>
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+                <!-- PDF -->
+                <div *ngIf="recurso.tipoRecurso === 'PDF'">
+
+                  <div class="documento-item">
+
+                    <i class="bi bi-file-earmark-pdf icono-pdf"></i>
+
+                    <div
+                      class="documento-info"
+                      (click)="mostrar_pdf(recurso)">
+
+                      <strong>
+                        {{ recurso.nombreOriginal }}
+                      </strong>
+
+                      <small>Documento PDF</small>
+
+                    </div>
+
+                    <button
+                      class="btn-documento"
+                      type="button">
+
+                      <i class="bi bi-download"></i>
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- Pie de la lección -->
+              <div class="registro-footer">
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =========================================
+     MODAL DE VIDEO
+========================================= -->
+
+@if (videoModal) {
+
+  <div class="modal-video">
+
+    <div class="contenido-video">
+
+      <button
+        class="cerrar-video"
+        type="button"
+        (click)="cerrarVideo()">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+      <iframe
+        [src]="videoUrl"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </div>
+
+}

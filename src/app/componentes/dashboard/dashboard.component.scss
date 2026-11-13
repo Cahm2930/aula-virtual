@@ -1,0 +1,162 @@
+
+
+.marco 
+{
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  flex: 1;
+  height: calc(100% - 85px);
+  margin-top: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.titulo-gradiente {
+    font-size: 25px;
+    padding: 10px;
+
+    background: linear-gradient(
+        90deg,
+        var(--Verdepetroleo) 0%,
+        var(--Verdemanzana) 60%,
+        var(--AmarilloOro) 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
+}
+.info-card{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    transition:.3s;
+    border: 1px solid rgb(236, 234, 234);
+
+}
+
+.info-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.icono{
+
+    width:52px;
+    height:52px;
+
+    border-radius:12px;
+
+    display:grid;
+    place-items:center;
+
+    background:white;
+
+    font-size:24px;
+
+}
+
+.titulo{
+
+    font-weight:600;
+
+    color:#4d4d4d;
+
+}
+
+.detalle{
+
+    color:#8d8d8d;
+
+    font-size:14px;
+
+}
+
+.amarillo{
+
+    background:#fff8e6;
+
+}
+
+.verde{
+
+    background:#e8f9ef;
+
+}
+
+.morado{
+
+    background:#f2ecff;
+
+}
+
+.rosado{
+
+    background:#fff0ec;
+
+}
+
+.estadistica{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    border: 1px solid rgb(236, 234, 234);
+
+}
+
+.cabecera{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.valor{
+
+    color:#10b981;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.fila{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:12px;
+
+    color:#666;
+
+}
+

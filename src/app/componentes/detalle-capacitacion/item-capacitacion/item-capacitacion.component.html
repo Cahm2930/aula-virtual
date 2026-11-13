@@ -1,0 +1,225 @@
+
+<div class="dialog-pregunta">
+
+  <div class="dialog-header" style="padding: 0;">
+   
+    <div class="header-texto">
+      <h2 mat-dialog-title>Crear lección</h2>
+      
+    </div>
+
+   
+  </div>
+
+  <mat-dialog-content>
+    <div style="height: 10px;"></div>
+    <form [formGroup]="formulario">
+
+      <mat-form-field  appearance="outline" class="campo-completo dense-2">
+        <mat-label>Descripción de lección</mat-label>
+
+        <textarea
+          matInput
+          formControlName="pregunta"
+          rows="1"
+          >
+        </textarea>
+
+        <mat-error
+          *ngIf="formulario.get('pregunta')?.hasError('required')">
+          Ingresa el enunciado de la pregunta.
+        </mat-error>
+
+        <mat-error
+          *ngIf="formulario.get('pregunta')?.hasError('minlength')">
+          La pregunta debe tener al menos 5 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+
+   
+<!-- SECCIÓN DE DOCUMENTOS PDF -->
+ 
+<div class="alternativas-header documentos-header">
+  <div>
+    <h3>
+      
+      Documentos PDF
+    </h3>
+    <p>Agrega Max 10 documentos de hasta 1 MB</p>
+  </div>
+
+  <button
+    mat-stroked-button
+    type="button"
+    class="btn-agregar"
+    (click)="agregarDocumento()"
+    [disabled]="documentos.length >= 10">
+
+    <i class="bi bi-plus-lg"></i>
+    Agregar PDF
+  </button>
+</div>
+
+
+<div formArrayName="documentos">
+
+  <div
+    class="documento-item"
+    *ngFor="let documento of documentos.controls; let i = index"
+    [formGroupName]="i">
+<!--
+    <div class="documento-icono">
+      <i class="bi bi-file-earmark-pdf"></i>
+    </div>
+-->
+
+    <div class="documento-campos">
+    <!--      <mat-form-field
+        appearance="outline"
+        class="campo-completo dense-2">
+
+        <mat-label>Nombre del documento</mat-label>
+
+        <input
+          matInput
+          formControlName="nombre"
+          placeholder="Ej. Manual de seguridad">
+
+        <mat-error
+          *ngIf="documento.get('nombre')?.hasError('required')">
+          Ingresa el nombre del documento.
+        </mat-error>
+      </mat-form-field>
+    -->
+      <div class="archivo-pdf">
+        <label [for]="'pdf-' + i" class="label-archivo">
+          <i class="bi bi-upload"></i>
+          Seleccionar PDF
+        </label>
+
+        <input
+          hidden
+          type="file"
+          [id]="'pdf-' + i"
+          accept=".pdf,application/pdf"
+          (change)="seleccionarDocumento($event, i)">
+
+        <span class="nombre-archivo" style="max-width: 200px;;">
+          {{ documento.get('archivo')?.value?.name || 'Ningún archivo seleccionado' }}
+        </span>
+
+        <mat-error
+          *ngIf="documento.get('archivo')?.touched &&
+                 documento.get('archivo')?.hasError('required')">
+          Selecciona un archivo PDF.
+        </mat-error>
+
+        <mat-error
+          *ngIf="documento.get('archivo')?.hasError('tipoInvalido')">
+          El archivo debe ser PDF.
+        </mat-error>
+
+        <mat-error
+          *ngIf="documento.get('archivo')?.hasError('tamanoInvalido')">
+          El archivo no debe superar los 20 MB.
+        </mat-error>
+      </div>
+    </div>
+
+    <button
+      mat-icon-button
+      type="button"
+      color="warn"
+      aria-label="Eliminar documento"
+      (click)="eliminarDocumento(i)">
+
+      <i class="bi bi-trash3" style="font-size: 20px;"></i>
+    </button>
+
+  </div>
+
+</div>
+
+        
+
+      
+      <div class="alternativas-header documentos-header" >
+
+        
+
+
+
+        <div>
+          <h3>Enlaces de video</h3>
+          <p>Enlace donde esta el contenido de videos</p>
+        </div>
+
+           <button
+        mat-stroked-button
+        type="button"
+        class="btn-agregar"
+        [disabled]="alternativas.length >= 6"
+        (click)="agregarAlternativa()">
+
+       <i class="bi bi-plus-lg"></i>
+        Agregar enlace
+      </button>
+
+      </div>
+
+    
+
+        <div
+          class="alternativa"
+          *ngFor="let alternativa of alternativas.controls; let i = index">
+
+       
+
+          <mat-form-field appearance="outline" class="campo-alternativa dense-2">
+            <mat-label>
+              Enlace {{ i +1 }}
+            </mat-label>
+
+            <input
+              matInput
+              [formControl]="alternativa"
+              placeholder="Escribe una alternativa">
+
+            <mat-error *ngIf="alternativa.hasError('required')">
+              Escribe el enlace.
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-icon-button
+            type="button"
+            color="warn"
+            aria-label="Eliminar alternativa"
+            
+            (click)="eliminarAlternativa(i)">
+           <i class="bi bi-trash3" style="font-size: 20px;"></i>
+          </button>
+        </div>
+      <mat-error
+        class="error-correcta"
+        *ngIf="formulario.get('respuestaCorrecta')?.touched &&
+               formulario.get('respuestaCorrecta')?.hasError('required')">
+        Selecciona la respuesta correcta.
+      </mat-error>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="cancelar()">
+      Cancelar
+    </button>
+   <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      (click)="guardarPregunta()">
+      Guardar pregunta
+    </button>
+  </mat-dialog-actions>
+</div>

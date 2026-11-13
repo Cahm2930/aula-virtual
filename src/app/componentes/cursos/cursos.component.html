@@ -1,0 +1,385 @@
+<div *ngIf="mostrar1"  class="marco" >
+
+      <div style="height:calc(100% - 0px);margin: 0px 8px 8px 8px;box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;border-radius: 18px;">
+            <div style="height: 100%;background-color: white;border-radius: 18px;">
+                <div class="container-fluid p-4">
+                  <div style="display: flex;height: 100%;">
+                  <div style="display: flex;flex-direction: column;width: 100%;">
+                      <div style="display: flex;padding: 0px 12px 12px 12px;">
+                     <div style="display: flex;flex-direction: column;">
+                           <div class="LeonHeadBold" style="font-size: 20px;">Cursos</div>
+                    <div style="color: var(--colorSubtitulo);">Explora y cóntinua tu aprendizaje</div>
+                     </div>
+                     <div style="flex: 1;"></div>
+                  <form [formGroup]="form">
+                    <mat-form-field class="dense-2" style="width:300px" appearance="outline" >
+                        <mat-label>Buscar Tema</mat-label>               
+                        <input  formControlName="buscar" matInput  autocomplete="off" >                 
+                    </mat-form-field>
+                    </form>
+                    </div>
+
+                    <!--
+                    <div style="background-color: gainsboro;height: 1px;width: 100%;margin-top: 10px;"></div>
+                    -->
+
+                    <div style="height: 10px;"></div>
+                    <div class="container">
+
+                        <div *ngIf="cursosPaginados.length==0"  style="display: flex;justify-content: center;padding: 10px 10px;color: rgb(175, 174, 174);">No hay cursos disponibles</div>
+                     <div class="curso-card" *ngFor="let curso of cursosPaginados" (click)="seleccionarCurso(curso)" >
+
+                        
+
+  <!-- Icono -->
+  <div class="curso-icono"
+         [style.background]="curso.color">
+
+        <i [class]="curso.icono"></i>
+
+    </div>
+
+  <!-- Información -->
+  <div class="curso-info">
+
+      <div class="LeonHeadBold"
+             style="font-size:17px;color:#218c3d">
+
+            {{curso.titulo | titlecase}}
+
+        </div>
+
+ <p style="margin-top:10px;color:#666;font-size: 15px;">
+
+            {{curso.descripcion}}
+
+ </p>
+ 
+    <span class="badge-curso" [style.background]="curso.colorBadge"  [style.color]="curso.colorTextoBadge">
+      <i class="bi bi-circle-fill"></i>
+         {{curso.categoria}}
+    </span>   
+  </div>
+
+  <!-- Fecha -->
+
+  <div class="curso-fecha">
+
+      <div class="fecha-icono">
+          <i class="bi bi-calendar3"></i>
+      </div>
+
+      <div style="font-size: 15px;">
+
+          <small>Última actualización</small>
+          <strong> {{curso.fecha}}</strong>
+
+      </div>
+
+      </div>
+    </div>
+ </div>
+
+ <div style="flex: 1;"></div>
+        <div class="paginacion">
+
+        <button
+            class="btn-page"
+            (click)="paginaAnterior()"
+            [disabled]="paginaActual === 1">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <button
+            *ngFor="let pagina of paginas"
+            class="btn-page"
+            [class.activa]="pagina === paginaActual"
+            (click)="irPagina(pagina)">
+            {{ pagina }}
+        </button>
+
+        <button
+            class="btn-page"
+            (click)="paginaSiguiente()"
+            [disabled]="paginaActual === totalPaginas">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+        <span class="texto">
+            Mostrando {{ inicio }} a {{ fin }} de {{ totalCursos }} cursos
+        </span>
+        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="mostrar2"  class="marco" >
+
+      <div style="height:calc(100% - 0px);margin: 0px 8px 8px 8px;box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;border-radius: 18px;">
+            <div style="height: 100%;background-color: white;border-radius: 18px;">
+                <div class="container-fluid p-4">
+                  <div style="display: flex;height: 100%;">
+                   
+                  <div style="display: flex;flex-direction: column;width: 100%;">
+                    <div style="display: flex;">
+                        <div style="display: grid;place-content: center; ">
+                            <div class="registro-icono-principal" >
+                            <i class="bi bi-journal-bookmark" style="font-size: 32px;"></i>
+                            </div>
+                        </div>
+                         
+                              <div style="display: flex;padding: 12px;">
+                     <div style="display: flex;flex-direction: column;">
+                           <div class="LeonHeadBold" style="color:#218c3d;font-size: 20px;">{{nombreCurso | titlecase}}</div>
+                    <div style="color: var(--colorSubtitulo);">Explora y cóntinua tu aprendizaje</div>
+                     </div>
+                     <div style="flex: 1;"></div>
+                 
+                    </div>
+                    </div>
+                       <div style="display: flex;height: 1px;background-color: #eaeaea;">                        
+                    </div>                     
+                    <!--
+                    <div style="background-color: gainsboro;height: 1px;width: 100%;margin-top: 10px;"></div>
+                    -->
+                    <div style="height: 40px;"></div>
+                    <div class="container" style="max-width: 900px;">
+                        <div style="display: flex;">
+                        <div style="display: flex; font-size: 20px;font-weight: 600;color: rgb(106, 124, 255);margin-inline: 20px;justify-content: center;align-items: center;"> MODULO I : INTRODUCCION</div>
+                        <div style="flex: 1;"></div>
+                        <button  mat-icon-button  style="display: grid;place-content: center;">
+                         <i class="bi bi-three-dots-vertical" style="color: rgb(106, 124, 255) ;"></i>
+                      </button>
+                        </div>
+
+                        
+                       
+                         <div style="height: 1px;background-color: rgba(106, 123, 255, 0.34); margin-top: 5px;"></div>
+                         <div style="height: 30px;"></div>
+
+                        <div class="registro-card" *ngFor="let leccion of lecciones">
+
+                        <!-- Encabezado: siempre visible -->
+                        <div class="registro-header" (click)="toggleLeccion(leccion.idleccion)">
+
+                            <div class="registro-icono">
+                            <i class="bi bi-clipboard-check"></i>
+                            </div>
+
+                            <div class="registro-titulo">
+                            <strong>{{ leccion.titulo }}</strong>
+                            <small>{{ leccion.tipoContenido }}</small>
+                            </div>
+
+                            <div class="registro-fecha">
+                            {{ leccion.fecha }}
+                            </div>
+
+                            <button
+                            class="btn-expandir"
+                            type="button"
+                            (click)="toggleLeccion(leccion.idleccion); $event.stopPropagation()"
+                            [attr.aria-expanded]="leccionExpandida === leccion.idleccion">
+
+                            <i
+                                class="bi"
+                                [ngClass]="leccionExpandida === leccion.idleccion
+                                ? 'bi-chevron-up'
+                                : 'bi-chevron-down'">
+                            </i>
+                            </button>
+
+                        </div>
+
+                        <!-- Contenido expandible -->
+                        <div
+                            class="registro-contenido"
+                            *ngIf="leccionExpandida === leccion.idleccion">
+
+                            <p>{{ leccion.descripcion }}</p>
+
+                            <div class="documentos-titulo">
+                            <i class="bi bi-paperclip">                                 
+                            </i>
+
+                            Documentos y recursos
+
+                            </div>
+
+                            <div class="documento-item" >
+                            <i class="bi bi-youtube icono-youtube icono-pdf"></i>
+
+                            <div class="documento-info"  (click)="abrirVideo('https://www.youtube.com/watch?v=-Z3N3judQyQ')">
+                                <strong>https://www.youtube.com/watch?v=IQcICSCm2_8&list=RD6FPmkOSCj2M&index=7 </strong>
+                                <small> video</small>
+                            </div>
+
+                            <button
+                                class="btn-documento"1
+                                type="button"
+                               >
+                                <i class="bi bi-download"></i>
+                            </button>
+                            </div>
+
+                            <div class="documento-item" *ngFor="let documento of leccion.documentos">
+                            <i class="bi bi-file-earmark-pdf icono-pdf"></i>
+
+                        
+                            <div class="documento-info" (click)=mostrar_pdf()>
+                                <strong>{{ documento.nombre }}</strong>
+                                <small>{{ documento.tipo }}</small>
+                            </div>
+
+                            <button
+                                class="btn-documento"
+                                type="button"
+                                (click)="abrirDocumento(documento.url); $event.stopPropagation()">
+                                <i class="bi bi-download"></i>
+                            </button>
+                            </div>
+
+                            <div class="registro-footer">
+                                <!--
+                            <button
+                                class="btn-ver"
+                                type="button"
+                                (click)="verLeccion(leccion.idleccion); $event.stopPropagation()">
+                                Ver lección
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        -->
+                            </div>
+
+                        </div>
+
+                        </div>
+                        <div style="height: 400px;"></div>
+
+                        <!--
+                     <div class="curso-card" *ngFor="let curso of cursosPaginados" >
+
+
+  <div class="curso-icono"
+         [style.background]="curso.color">
+
+        <i [class]="curso.icono"></i>
+
+    </div>
+
+
+  <div class="curso-info">
+
+      <div class="LeonHeadBold"
+             style="font-size:17px;color:#218c3d">
+
+            {{curso.titulo | titlecase}}
+
+        </div>
+
+ <p style="margin-top:10px;color:#666;font-size: 15px;">
+
+            {{curso.descripcion}}
+
+ </p>
+ 
+    <span class="badge-curso" [style.background]="curso.colorBadge"  [style.color]="curso.colorTextoBadge">
+      <i class="bi bi-circle-fill"></i>
+         {{curso.categoria}}
+    </span>
+
+
+     
+  </div>
+
+  <div class="curso-fecha">
+
+      <div class="fecha-icono">
+          <i class="bi bi-calendar3"></i>
+      </div>
+
+      <div style="font-size: 15px;">
+
+          <small>Última actualización</small>
+
+          <strong> {{curso.fecha}}</strong>
+
+      </div>
+
+  </div>
+
+ 
+
+ 
+
+                    </div>
+                -->
+                   
+                    </div>
+                    <div style="flex: 1;"></div>
+       <!--
+        <div class="paginacion">
+
+        <button
+            class="btn-page"
+            (click)="paginaAnterior()"
+            [disabled]="paginaActual === 1">
+
+            <i class="bi bi-chevron-left"></i>
+
+        </button>
+
+        <button
+            *ngFor="let pagina of paginas"
+            class="btn-page"
+            [class.activa]="pagina === paginaActual"
+            (click)="irPagina(pagina)">
+
+            {{ pagina }}
+
+        </button>
+
+        <button
+            class="btn-page"
+            (click)="paginaSiguiente()"
+            [disabled]="paginaActual === totalPaginas">
+
+            <i class="bi bi-chevron-right"></i>
+
+        </button>
+
+        <span class="texto">
+
+            Mostrando {{ inicio }} a {{ fin }} de {{ totalCursos }} cursos
+
+        </span>
+
+        </div>
+    -->
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if(videoModal)
+{
+      <div class="modal-video">
+          <div class="contenido-video">
+            <button class="cerrar-video" (click)="cerrarVideo()">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <iframe
+              [src]="videoUrl"
+              width="900"
+              height="500"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+}

@@ -1,0 +1,279 @@
+<mat-sidenav-container   style="display: flex;flex-direction: column;top: 0; bottom: 0;left: 0;right: 0;flex: 1;height: 100%;background-color:transparent;"
+>
+
+
+ <mat-sidenav
+  [mode]="isMobile() ? 'over' : 'side'"
+  [opened]="isMobile() ? mobileMenuOpen() : true"
+  [style.width]="isMobile() ? '270px' : sidenavWidth()"
+  class="sidenav-responsive">
+    <div [style.width]="sidenavWidth()"  style="   height: 100%; flex: 1;border-radius: 18px;padding: 11px;">
+      <span style="display: flex; justify-content: center">
+        <img [src]="logoImage()" [style.width]="logoWidth()" style="transition: all 600ms ease-in-out; margin: 20px 12px 8px 12px"/>
+      </span>
+      <div style="display: flex;"> </div>
+      <div style="height: 15px"></div>
+      
+      <div style="display: flex; justify-content: center; align-items: center ">
+        <div [style.width]="lineaWidth2()" class="line2"></div>
+
+      </div>
+      <div style="height: 15px"></div>
+      <mat-nav-list [style.height]="getAlturaCalculada()" style="overflow-y: auto; user-select: none" class="no-scrollbar">
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'dashboard'" [routerLinkActiveOptions]="{ exact: true }" >
+          <i class="bi bi-house icono" style="font-size: 22px;color: white;" matListItemIcon  ></i>
+          <div class="item-content mt-2"  >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Inicio</span>
+          </div>
+        </a>
+         <div style="height: 8px;"></div>
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'cursos'" [routerLinkActiveOptions]="{ exact: true }" >
+          <i class="bi bi-journal-bookmark icono" style="font-size: 22px; " matListItemIcon  ></i>
+          <div class="item-content mt-2" >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Cursos</span>
+          </div>
+        </a>
+
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'capacitaciones'" [routerLinkActiveOptions]="{ exact: true }" >
+          <i class="bi-people-fill icono" style="font-size: 22px; " matListItemIcon  ></i>
+          <div class="item-content mt-2" >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Capacitaciones</span>
+          </div>
+        </a>
+
+        <div style="height: 8px;"></div>
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'mantenedor'" [routerLinkActiveOptions]="{ exact: true }" >
+          <i class="bi bi-tools  icono" style="font-size: 22px; " matListItemIcon  ></i>
+          <div class="item-content mt-2"  >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Mantenimiento</span>
+          </div>
+       </a>
+
+       <!--
+           <ng-container *ngFor="let item of menuItems()">
+         
+          <a mat-list-item class="menu-item" [routerLink]="item.route || null" routerLinkActive="selected-menu-item" (click)="item.subItems ? toggleSubMenu(item) : null"
+          >
+            <i [class]="item.icon" class="icono" matListItemIcon></i>
+
+            <div class="item-content">
+              <span class="item-label"       
+                style="color: rgb(73, 73, 73); font-size: 15px"
+                >{{ item.label }}
+              </span>
+              <i class="bi bi-chevron-down submenu-arrow" [class.rotated]="isSubMenuOpen(item)"
+              ></i>
+            </div>
+          </a>
+
+         
+
+          <mat-nav-list
+            *ngIf="item.subItems && isSubMenuOpen(item)"
+            style="padding: 0px 0px 0px 15px"
+          >
+            <ng-container *ngFor="let sub of item.subItems">
+              <a mat-list-item 
+                class="menu-item"
+                [routerLink]="sub.route || null"
+                routerLinkActive="selected-menu-item"
+                (click)="sub.subItems ? toggleSubMenu(sub, [item.label]) : null"
+              >
+                <i matListItemIcon [class]="sub.icon" class="icono"
+                  style="margin-right: 5px" 
+                ></i>
+                <div class="item-content">
+                  <span class="item-label" style="color: rgb(87, 87, 87);font-size: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{ sub.label }}</span
+                  >
+
+                  <i
+                    class="bi bi-chevron-down submenu-arrow"
+                    *ngIf="sub.subItems?.length"
+                    [class.rotated]="isSubMenuOpen(sub, [item.label])"
+                  ></i>
+                </div>
+              </a>
+             
+              <mat-nav-list *ngIf="sub.subItems && isSubMenuOpen(sub, [item.label])" style="padding: 0px 0px 0px 20px; "
+              >
+  <a *ngFor="let third of sub.subItems" mat-list-item class="menu-item" [routerLink]="third.route || null" routerLinkActive="selected-menu-item"
+                >
+                  <i matListItemIcon [class]="third.icon"
+                    class="icono"
+                    style="font-size: 15px"
+                  ></i>
+
+                  <div style="display: flex;"></div>
+                  <div class="item-content">
+                    <span class="item-label" style="color: rgb(222, 252, 247);font-size: 15px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                      "
+                      >{{ third.label }}</span
+                    >
+                    <i
+                      class="bi bi-chevron-down submenu-arrow"
+                      *ngIf="third.subItems?.length"
+                    ></i>
+                  </div>
+                </a>
+              </mat-nav-list>
+            </ng-container>
+          </mat-nav-list>
+        </ng-container>
+
+      -->
+    
+  </mat-nav-list>
+      <div style="display: flex; justify-content: center; align-items: center">
+        <div [style.width]="lineaWidth2()" class="line"></div>
+      </div>
+      <div style="text-align: center; margin-top: 8px; font-size: 12px">      
+          <span style="color: #fff200" *ngIf="erp()" > ERP FINANCIERO  </span>
+         <span><span class="texto_muy_grueso" style="color: white;font-size: 19px;">Aula</span><span clas="texto_fino" style="font-size: 18px;color:var(--Verdemanzana)">Virtual</span> </span>       
+      </div>
+    </div>
+  </mat-sidenav>
+
+<mat-sidenav-content class="content contenido-responsive">
+    <mat-toolbar style=" margin: 0;padding: 0;">
+      <div style="display: flex; width: 100%; margin-top: 10px; border-radius: 12px;padding: 6px;background: #f6fffc ;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+      <button
+  (click)="alternarMenu()"
+  mat-icon-button
+  class="example-icon"
+  style="display: grid;place-content: center;"
+  aria-label="Abrir o cerrar menú">
+          <i class="bi bi-justify" >         
+          </i>        
+        </button>
+        <div style="display: grid;place-content: center;">
+        <span style="color: var(--Verdepetroleo2);">Aula<span class="texto_fino">Virtual </span> </span>
+        </div>
+        <div style="display: none; flex-direction: column;place-items: center;justify-self: auto;align-content: center;display: inline-block;"></div>
+        <!--
+        <form [formGroup]="form">
+          <div style="height: 45px">
+            <mat-form-field
+              class="dense-2"
+              class="custom-white-border"
+              style="margin-top: -0.5rem"
+              appearance="outline"
+            >
+              <input
+                placeholder="Buscar"
+                type="text"
+                matInput
+                autocomplete="off"
+                style="font-size: 15px; padding-top: 0.3rem"
+                formControlName="buscarMenu"
+              />
+              <mat-icon matPrefix style="color: #a2a1a1; padding-right: 4px"
+                ><i class="bi bi-search" style="font-size: 22px"></i
+              ></mat-icon>
+            </mat-form-field>
+          </div>
+        </form>
+        -->
+        <div style="width: 100px;"></div>
+        <span></span>
+        <span style="flex-grow: 1"></span>
+        <div style="display: none">
+          <div style="display: flex; flex-direction: column; margin-inline: 8px" >
+            <div style="
+                font-size: 11px;
+                font-weight: 400;
+                color: rgb(171, 171, 171);
+                text-align: right;
+                color: rgb(139, 139, 139); ">
+              Tipo cambio SBS
+            </div>
+            <div style="
+                font-size: 14px;
+                text-align: center;
+                margin-top: -16px;
+                color: #1aad1a;">          
+              S/ {{ tipoCambio }}
+            </div>
+          </div>
+        </div>
+        <div style="width: 1px;background-color: rgb(204, 204, 204);margin: 10px 10px 10px 12px;"></div>
+        <button
+          mat-icon-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon" >
+          <i           
+            style="font-size: 20px"
+            class="bi bi-bell">
+          </i>
+        </button>
+
+        <div style="display: flex; flex-direction: column; margin-inline: 4px">
+            <div
+                style="font-size: 13px;
+                font-weight: 400;
+                color: rgb(171, 171, 171);
+                text-align: right;
+                color: rgb(21, 103, 255);">
+                {{form.get("roles")?.value._perfil}}
+            </div>
+            <div style="font-size: 13px; text-align: center; margin-top: -16px">
+            </div>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <div style="display: grid; place-content: center">
+            <i style="font-size: 15px;" class="bi bi-chevron-down" >  </i>
+          </div>
+        </button>
+        <mat-menu #menu="matMenu" class="menu-form-wrapper">
+
+          <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+
+            <form [formGroup]="form">
+
+              <div style="display: flex; flex-direction: column;justify-content: center; margin: 8px 12px 8px 12px;">      
+              <div class="container">
+                  <div style="display: flex;justify-content: center;padding: 12px;">
+                    <i style="font-size: 70px; color: gray" class="bi bi-person-circle"></i>
+                  </div>
+                  <div style="height: 8px"></div>
+                  <mat-divider></mat-divider>
+                  <div style="height: 20px"></div>
+                  <div style="font-size: 14px; text-align: center">
+                    {{ user }}
+                  </div>
+                  <div style="font-size: 14px;font-weight: 400;color: rgb(194, 194, 194);text-align: center;">
+                    {{correo}}
+                  </div>
+
+                  <div style="display: flex;justify-content: center;"></div>
+                  <div style="display: flex; flex-direction: column;display: flex;flex-direction: column;display: flex;              
+                  display:flex;flex-direction: column;"></div>
+
+                  <div style="height: 20px"></div>
+                  <mat-form-field class="dense-2" appearance="outline" style="width: 100%; font-size: 13px">
+                    <mat-label>Roles</mat-label>
+                    <mat-select formControlName="roles" style="font-size: 13px">
+                      <mat-option style="font-size: 13px" *ngFor="let grupo of TypeRoles" (click)="changeRole(grupo)" [value]="grupo">
+                        {{ grupo._perfil }}
+                      </mat-option>
+                     </mat-select>
+                  </mat-form-field>
+                  <button mat-menu-item class="cerrar-sesion-btn" (click)="salir_sesion()" type="button" ><div style="display: flex;justify-content: center;">
+                      <i class="bi bi-box-arrow-right"  id="puerta" style="display: flex;justify-content: center;align-items: center;margin-inline: 4px;"></i>
+                      <span style="font-size: 14px;padding: 4px;"> Cerrar sesion</span>
+                    </div>                   
+                  </button>
+
+                </div>                            
+              </div>
+            </form>
+          </div>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+
+    <div style="height: 10px;">
+    </div>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

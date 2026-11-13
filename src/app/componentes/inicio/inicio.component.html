@@ -1,0 +1,302 @@
+
+<!-- =========================
+     ENCABEZADO
+========================= -->
+
+<header class="encabezado">
+  <div class="encabezado-contenido">
+
+    <div class="encabezado-logo">
+      <img
+        src="./imagenes/logoLeon.png"
+        alt="Logo León XIII"
+        class="logoImagen"
+        (click)="login()">
+
+      <div class="separador-logo"></div>
+
+      <h2 class="texto_fino">Aula Virtual</h2>
+    </div>
+
+    <div class="espaciador"></div>
+
+    <div class="encabezado-acceso">
+      <div class="boton" (click)="login()">
+        Acceder
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- =========================
+     BANNER PRINCIPAL
+========================= -->
+
+<section class="hero">
+
+  <div class="container hero-container">
+
+    <div class="row hero-row">
+
+      <div class="col-12 col-md-6 hero-texto">
+
+        <div class="LeonHeadBold hero-titulo">
+          La mejor forma de aprender.
+        </div>
+
+        <div class="hero-separacion"></div>
+
+        <div class="LeonRegular hero-descripcion">
+          En CAC León XIII queremos mejorar tu experiencia
+          de aprendizaje corporativo.
+        </div>
+
+      </div>
+
+      <div class="col-12 col-md-6 imagen-contenedor">
+
+        <img
+          src="/imagenes/imagenPrincipal.png"
+          class="imagen-principal"
+          alt="Aula Virtual León XIII">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TÍTULO DE CONTENIDOS
+========================= -->
+
+<section class="seccion-contenidos">
+
+  <div class="LeonHeadBold titulo-contenidos">
+    Impulsa tu desarrollo con contenidos creados para ti.
+  </div>
+
+  <div class="LeonRegular descripcion-contenidos">
+    Aprende nuevas habilidades y fortalece tu desarrollo
+    profesional con nuestros contenidos de capacitación.
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PESTAÑAS
+========================= -->
+
+<div class="tabs-contenedor">
+
+  <div
+    class="tab-item"
+    [class.tab-activo]="tabSeleccionado === 'videos'"
+    (click)="tabSeleccionado='videos'">
+
+    <span class="LeonHeadBold">
+      Videos Top
+    </span>
+
+  </div>
+
+  <div
+    class="tab-item"
+    [class.tab-activo]="tabSeleccionado === 'novedades'"
+    (click)="tabSeleccionado='novedades'">
+
+    <span class="LeonHeadBold">
+      Novedades
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CARRUSEL DE VIDEOS
+========================= -->
+
+<div class="container seccion-videos">
+
+  <swiper-container
+    class="carrusel-videos"
+    clickable="true"
+    slides-per-view="1"
+    space-between="16"
+    breakpoints='{"576":{"slidesPerView":2,"spaceBetween":20},"992":{"slidesPerView":3,"spaceBetween":24}}'
+    loop="true"
+    pagination="true"
+    autoplay-delay="3000"
+    autoplay-disable-on-interaction="false">
+
+    <swiper-slide>
+
+      <div class="video-card" (click)="abrirVideo('h37jQBs55Lc')">
+
+        <img
+          src="https://img.youtube.com/vi/h37jQBs55Lc/maxresdefault.jpg"
+          class="video-miniatura"
+          alt="Video de capacitación">
+
+        <i class="bi bi-play-circle-fill play-icon"></i>
+
+      </div>
+
+    </swiper-slide>
+
+
+    <swiper-slide>
+
+      <div class="video-card" (click)="abrirVideo('prOGDrypqPc')">
+
+        <img
+          src="https://img.youtube.com/vi/prOGDrypqPc/maxresdefault.jpg"
+          class="video-miniatura"
+          alt="Video de capacitación">
+
+        <i class="bi bi-play-circle-fill play-icon"></i>
+
+      </div>
+
+    </swiper-slide>
+
+
+    <swiper-slide>
+
+      <div class="video-card" (click)="abrirVideo('hK3B3LwHluw')">
+
+        <img
+          src="https://img.youtube.com/vi/hK3B3LwHluw/maxresdefault.jpg"
+          class="video-miniatura"
+          alt="Video de capacitación">
+
+        <i class="bi bi-play-circle-fill play-icon"></i>
+
+      </div>
+
+    </swiper-slide>
+
+
+    <swiper-slide>
+
+      <div class="video-card" (click)="abrirVideo('HTirDLfuJUI')">
+
+        <img
+          src="https://img.youtube.com/vi/HTirDLfuJUI/maxresdefault.jpg"
+          class="video-miniatura"
+          alt="Video de capacitación">
+
+        <i class="bi bi-play-circle-fill play-icon"></i>
+
+      </div>
+
+    </swiper-slide>
+
+  </swiper-container>
+
+
+  <!-- =========================
+       MENSAJE INFORMATIVO
+  ========================= -->
+
+  <div class="mensaje-contenedor">
+
+    <div class="mensaje-contenido">
+
+      Capacítate cuando quieras, donde quieras.
+      Accede a contenidos exclusivos para colaboradores
+      y socios, diseñados para fortalecer tus conocimientos
+      y acompañarte en tu desarrollo continuo.
+
+    </div>
+
+  </div>
+  <div style="height: 20px;"></div>
+
+</div>
+
+
+<!-- =========================
+     PIE DE PÁGINA
+========================= -->
+
+<footer class="pie-pagina">
+
+  <div class="pie-institucional">
+
+    <img
+      src="./imagenes/logoLeonC.png"
+      alt="Cooperativa León XIII"
+      class="logo-footer">
+
+    <div class="copyright">
+      Cooperativa León XIII ©2026. All Rights Reserved.
+    </div>
+
+  </div>
+
+
+  <div class="pie-redes">
+
+    <i
+      class="bi bi-geo-alt"
+      (click)="ubicanos()"
+      title="Ubícanos">
+    </i>
+
+    <i
+      class="bi bi-facebook"
+      (click)="facebook()"
+      title="Facebook">
+    </i>
+
+    <i
+      class="bi bi-instagram"
+      (click)="instagram()"
+      title="Instagram">
+    </i>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     MODAL DE VIDEO
+========================= -->
+
+@if(videoModal) {
+
+  <div class="modal-video">
+
+    <div class="contenido-video">
+
+      <button
+        class="cerrar-video"
+        (click)="cerrarVideo()">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+      <iframe
+        class="video-responsive"
+        [src]="videoUrl"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </div>
+
+}

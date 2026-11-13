@@ -1,0 +1,939 @@
+
+/* =========================================
+   FUENTES
+========================================= */
+
+@font-face {
+  font-family: 'textofino';
+  src: url('/fuentes/BaiJamjuree-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'textogrueso';
+  src: url('/fuentes/BaiJamjuree-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'textomuygrueso';
+  src: url('/fuentes/BaiJamjuree-Bold.ttf') format('truetype');
+}
+
+.texto_fino {
+  font-family: 'textofino';
+}
+
+.texto_grueso {
+  font-family: 'textogrueso';
+}
+
+.texto_muy_grueso {
+  font-family: 'textomuygrueso';
+}
+
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.marco {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.panel-capacitaciones {
+  min-height: 100%;
+  margin: 0 8px 8px;
+  border-radius: 18px;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.panel-interior {
+  min-height: 100%;
+  background-color: white;
+  border-radius: 18px;
+}
+
+.contenedor-capacitaciones {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.separador {
+  height: 1px;
+  width: 100%;
+  background-color: #eaeaea;
+}
+
+.espaciador {
+  flex: 1;
+}
+
+
+/* =========================================
+   CABECERA DE CAPACITACIONES
+========================================= */
+
+.cabecera-capacitaciones {
+  display: flex;
+  align-items: center;
+  padding: 0 12px 12px;
+  gap: 15px;
+}
+
+.titulo-capacitaciones {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.titulo-principal {
+  font-size: 20px;
+}
+
+.subtitulo-capacitaciones {
+  color: var(--colorSubtitulo);
+  font-size: 14px;
+}
+
+.form-buscador {
+  display: flex;
+  align-items: center;
+}
+
+.buscador-capacitaciones {
+  width: 300px;
+  max-width: 100%;
+  font-size: 14px;
+}
+
+
+/* =========================================
+   LISTADO DE CURSOS
+========================================= */
+
+.lista-cursos {
+  width: 100%;
+  min-width: 0;
+}
+
+.sin-cursos {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  color: rgb(175, 174, 174);
+}
+
+
+/* =========================================
+   TARJETA DE CURSO
+========================================= */
+
+.curso-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.curso-card:hover {
+  transform: translateY(-3px);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.curso-icono {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f49c3e, #ffa03b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.curso-icono i {
+  font-size: 42px;
+  color: white;
+}
+
+.curso-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.curso-titulo {
+  font-size: 17px;
+  color: #218c3d;
+  overflow-wrap: anywhere;
+}
+
+.curso-descripcion {
+  color: #6c757d;
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.badge-curso {
+  display: inline-block;
+  background: #d9f6e5;
+  color: #16883b;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+.badge-curso i {
+  font-size: 8px;
+  margin-right: 5px;
+}
+
+
+/* =========================================
+   FECHA DEL CURSO
+========================================= */
+
+.curso-fecha {
+  width: 230px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-left: 1px solid #eee;
+  padding-left: 25px;
+}
+
+.fecha-icono {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #16883b;
+}
+
+.fecha-informacion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.fecha-informacion small {
+  color: #666;
+}
+
+.fecha-informacion strong {
+  color: #333;
+}
+
+
+/* =========================================
+   LECCIONES / REGISTROS
+========================================= */
+
+.contenedor-lecciones {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.espacio-lecciones {
+  height: 30px;
+}
+
+.registro-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background-color: #f5fffb;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.registro-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.registro-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.registro-icono {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5f3eb;
+  color: #218c3d;
+  font-size: 20px;
+}
+
+.registro-icono-principal {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5f3eb;
+  color: #218c3ec2;
+  font-size: 20px;
+}
+
+.registro-icono-principal i {
+  font-size: 32px;
+}
+
+.cabecera-detalle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 12px 12px;
+  min-width: 0;
+}
+
+.titulo-detalle {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nombre-capacitacion {
+  color: #218c3d;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+}
+
+.registro-titulo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.registro-titulo strong {
+  color: #243447;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.registro-titulo small {
+  color: #718096;
+}
+
+.registro-fecha {
+  color: #718096;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.btn-expandir,
+.btn-documento {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.btn-expandir:hover,
+.btn-documento:hover {
+  background: #f0f7f2;
+  color: #218c3d;
+}
+
+.registro-contenido {
+  background-color: white;
+  padding: 18px 24px;
+  border-top: 1px solid #edf0f2;
+  color: #596579;
+  min-width: 0;
+}
+
+.registro-contenido p {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.documentos-titulo {
+  font-weight: 600;
+  color: #34495e;
+  margin: 20px 0 12px;
+}
+
+
+/* =========================================
+   DOCUMENTOS Y RECURSOS
+========================================= */
+
+.documento-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #edf0f2;
+  border-radius: 9px;
+  padding: 12px;
+  margin-bottom: 8px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.icono-pdf {
+  color: #e74c3c;
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.documento-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.documento-info strong {
+  font-size: 14px;
+  color: #34495e;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.documento-info small {
+  font-size: 12px;
+  color: #8492a6;
+}
+
+.documento-info:hover {
+  color: #f39c12;
+  text-decoration-color: #f39c12;
+}
+
+.registro-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn-ver {
+  border: none;
+  background: #087f4b;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+
+/* =========================================
+   INFORMACIÓN DE VIDEO
+========================================= */
+
+.video-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.video-info i {
+  font-size: 18px;
+}
+
+.video-info span {
+  font-size: 15px;
+}
+
+
+/* =========================================
+   PAGINACIÓN
+========================================= */
+
+.paginacion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.btn-page {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: #f2f2f2;
+  cursor: pointer;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.btn-page:hover:not(:disabled) {
+  background: #228b5a;
+  color: white;
+}
+
+.btn-page.activa {
+  background: #228b5a;
+  color: white;
+}
+
+.btn-page:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.texto {
+  margin-left: 20px;
+  color: #666;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   MODAL DE VIDEO
+========================================= */
+
+.modal-video {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 9999;
+}
+
+.contenido-video {
+  position: relative;
+  width: 900px;
+  max-width: 100%;
+}
+
+.contenido-video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 8px;
+}
+
+.cerrar-video {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 991px) {
+
+  .contenedor-capacitaciones {
+    padding: 16px !important;
+  }
+
+  .curso-card {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .curso-icono {
+    width: 70px;
+    height: 70px;
+    margin-right: 5px;
+  }
+
+  .curso-icono i {
+    font-size: 32px;
+  }
+
+  .curso-fecha {
+    width: 190px;
+    padding-left: 12px;
+    gap: 8px;
+  }
+
+  .registro-contenido {
+    padding: 16px;
+  }
+
+}
+
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 767px) {
+
+  .panel-capacitaciones {
+    margin: 0 2px 8px;
+    border-radius: 14px;
+  }
+
+  .panel-interior {
+    border-radius: 14px;
+  }
+
+  .contenedor-capacitaciones {
+    padding: 12px !important;
+  }
+
+  /* Cabecera de cursos */
+
+  .cabecera-capacitaciones {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 5px 5px 12px;
+    gap: 10px;
+  }
+
+  .titulo-capacitaciones {
+    width: 100%;
+  }
+
+  .titulo-principal {
+    font-size: 19px;
+  }
+
+  .form-buscador {
+    width: 100%;
+  }
+
+  .buscador-capacitaciones {
+    width: 100%;
+  }
+
+  .buscador-capacitaciones .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  /* Tarjetas */
+
+  .curso-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .curso-card:hover {
+    transform: none;
+  }
+
+  .curso-icono {
+    width: 55px;
+    height: 55px;
+    margin: 0;
+    border-radius: 14px;
+  }
+
+  .curso-icono i {
+    font-size: 27px;
+  }
+
+  .curso-info {
+    width: 100%;
+  }
+
+  .curso-titulo {
+    font-size: 16px;
+  }
+
+  .curso-descripcion {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .curso-fecha {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #eee;
+    padding: 12px 0 0;
+    margin-top: 5px;
+    gap: 10px;
+  }
+
+  /* Paginación */
+
+  .paginacion {
+    justify-content: center;
+    gap: 6px;
+    margin-top: 18px;
+  }
+
+  .btn-page {
+    width: 30px;
+    height: 30px;
+  }
+
+  .texto {
+    width: 100%;
+    margin: 8px 0 0;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  /* Cabecera del detalle */
+
+  .cabecera-detalle {
+    align-items: center;
+    gap: 10px;
+    padding: 5px 2px 12px;
+  }
+
+  .registro-icono-principal {
+    width: 44px;
+    height: 44px;
+  }
+
+  .registro-icono-principal i {
+    font-size: 25px;
+  }
+
+  .nombre-capacitacion {
+    font-size: 17px;
+  }
+
+  .subtitulo-capacitaciones {
+    font-size: 12px;
+  }
+
+  /* Lecciones */
+
+  .contenedor-lecciones {
+    padding: 0;
+  }
+
+  .espacio-lecciones {
+    height: 18px;
+  }
+
+  .registro-header {
+    padding: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .registro-icono {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .registro-titulo {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .registro-titulo strong {
+    font-size: 13px;
+  }
+
+  .registro-fecha {
+    width: 100%;
+    padding-left: 44px;
+    font-size: 12px;
+  }
+
+  .btn-expandir {
+    padding: 6px;
+  }
+
+  .registro-contenido {
+    padding: 14px;
+  }
+
+  .registro-contenido p {
+    font-size: 14px;
+  }
+
+  .documentos-titulo {
+    font-size: 14px;
+  }
+
+  /* Documentos */
+
+  .documento-item {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .documento-info {
+    min-width: 0;
+  }
+
+  .documento-info strong {
+    font-size: 12px;
+  }
+
+  .documento-info small {
+    font-size: 11px;
+  }
+
+  .icono-pdf {
+    font-size: 21px;
+  }
+
+  /* Modal */
+
+  .modal-video {
+    padding: 15px;
+  }
+
+  .contenido-video {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .contenido-video iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .cerrar-video {
+    top: -35px;
+    right: 0;
+  }
+
+}
+
+.registro-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.registro-icono {
+  flex: 0 0 40px;
+}
+
+.registro-titulo {
+  flex: 1;
+  min-width: 0;
+}
+
+.registro-titulo strong {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.registro-fecha {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.btn-expandir {
+  flex: 0 0 35px;
+  width: 35px;
+  min-width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.btn-expandir i {
+  display: inline-block;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 480px) {
+
+     .registro-fecha {
+    display: none;
+  }
+
+  .contenedor-capacitaciones {
+    padding: 9px !important;
+  }
+
+  .panel-capacitaciones {
+    margin: 0 1px 5px;
+  }
+
+  .curso-card {
+    padding: 12px;
+  }
+
+  .registro-header {
+    padding: 10px;
+  }
+
+  .registro-contenido {
+    padding: 12px;
+  }
+
+  .documento-item {
+    padding: 9px;
+  }
+
+  .badge-curso {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+}
