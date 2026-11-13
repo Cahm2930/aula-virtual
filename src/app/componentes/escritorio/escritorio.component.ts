@@ -155,7 +155,7 @@ export class EscritorioComponent {
   }
 
   salir_sesion() {
-    this.router.navigate(['inicio']);
+    this.router.navigate(['']);
   }
 
   cargarMenu() {

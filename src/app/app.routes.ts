@@ -10,7 +10,7 @@ import { CapacitacionesComponent } from './componentes/capacitaciones/capacitaci
 import { DetalleCapacitacionComponent } from './componentes/detalle-capacitacion/detalle-capacitacion.component';
 
 export const routes: Routes = [
-  { path: 'inicio', component: InicioComponent },
+  { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'escritorio',
