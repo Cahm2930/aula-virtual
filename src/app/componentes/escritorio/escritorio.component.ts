@@ -16,6 +16,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { MenuMovilComponent } from '../menu-movil/menu-movil.component';
+import { MatDialog } from '@angular/material/dialog';
 
 const items = [
   {
@@ -120,6 +122,7 @@ export class EscritorioComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private dialog: MatDialog,
   ) {
     this.form = this.fb.group({
       roles: [''],
@@ -143,10 +146,21 @@ export class EscritorioComponent {
   alternarMenu(): void {
     if (this.isMobile()) {
       this.mobileMenuOpen.update((abierto) => !abierto);
-      this.router.navigate(['mantenedor']);
     } else {
       this.collapsed.update((valor) => !valor);
     }
+  }
+
+  ListarMenu() {
+    this.dialog.open(MenuMovilComponent, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'dialog-menu-movil',
+      disableClose: true,
+      autoFocus: false,
+    });
   }
 
   cerrarMenuMovil(): void {

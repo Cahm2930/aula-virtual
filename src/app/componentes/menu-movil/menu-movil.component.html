@@ -1,0 +1,238 @@
+<div class="menu-mobile">
+
+  <!-- CABECERA -->
+  <div class="menu-header">
+     <img (click)="inicio()"   style=" height: 47px; margin: 2px 2px 1px 10px;"  src="/imagenes/IconoCarga.webp"> 
+     <div style="display: flex;flex: 1;"></div>
+   
+    <button
+      mat-icon-button
+      (click)="cerrar()"
+      class="btn-cerrar" style="display: grid; place-content: center;">
+
+      <i class="bi bi-x"></i>
+
+    </button>
+
+  </div>
+
+
+  <!-- BOTONES -->
+  <div class="acciones">
+
+   
+
+    <button class="btn-banca" (click)="comiteElectoral()" >
+      Comité Electoral
+    </button>
+
+  </div>
+
+
+  <div class="menu-principal" (click)="serSocio()">
+    <span style="font-weight: 600;">Ser socio</span>
+    <!--
+    <i class="bi bi-chevron-right"></i>
+    -->
+  </div>
+
+<!-- PRODUCTOS: tiene hijos -->
+<mat-expansion-panel class="seccion">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Beneficios
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+ <div class="submenu">
+
+    <a  (click)="ayudasepelio()"  style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Fondo Previsión Social
+    </a>
+
+    <a (click)="servicios_convenio()"  style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Descuentos
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Capacitaciones
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Campañas de Salud
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Proyección Social
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;"> 
+      Celebraciones
+    </a>
+ </div>
+ 
+
+    <!--
+    <div class="links">
+      <div>Tarjetas de Crédito</div>
+      <div>Tarjetas de Débito</div>
+    </div>
+
+    -->
+
+ 
+
+</mat-expansion-panel>
+
+
+
+<mat-expansion-panel class="seccion">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Préstamos
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-expansion-panel class="subseccion">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Personal
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="links">
+      <div (click)="credito_leon_consumo()">Consumo</div>
+      <div (click)="credito_leon_vehicular_consumo()">Auto</div>
+      <div (click)="credito_vivienda()">Vivienda</div>
+      <div (click)="credito_leon_convenio()">Convenio</div>
+      <div (click)="credito_super_efectivo()">Súper Efectivo</div>
+      <div (click)="credito_leon_garantia_ahorro()">Garantia de Ahorros</div>
+    </div>
+
+  </mat-expansion-panel>
+
+    <mat-expansion-panel class="subseccion">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        MYPE
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="links">
+      <!--
+      <div (click)="credito_leon_capital_trabajo()">Capital de Trabajo</div>
+      <div (click)="credito_activo_fijo() " >Activo Fijo</div>
+      -->
+       <div (click)="credito_mype() " >Mype</div>
+      <div  (click)="credito_leon_vehicular()">Vehicular</div>
+    
+    </div>
+
+  </mat-expansion-panel>
+ <!-- HIPOTECARIO: NO TIENE HIJOS -->
+  <div (click)="credito_hipotecario()" class="subseccion link-simple" style="font-weight: 600;font-size: 18px;padding: 12px 0px 5px 10px;">
+    Hipotecario
+  </div>
+
+</mat-expansion-panel>
+
+<mat-expansion-panel class="seccion">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Pagos
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+ <div class="submenu">
+
+    <a (click)="yape()"  style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Yape
+    </a>
+
+    <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      BCP
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      BBVA
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Interbank
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      IzipayYa
+    </a>
+    
+ </div>
+
+</mat-expansion-panel>
+
+<mat-expansion-panel class="seccion">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Ahorros
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+ <div class="submenu">
+
+    <a (click)="ahorro_libre()"  style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Ahorro Libre
+    </a>
+
+    <a (click)="plazo_fijo()" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Plazo Fijo
+    </a>
+   
+    
+ </div>
+
+</mat-expansion-panel>
+
+<mat-expansion-panel class="seccion">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Campañas
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+ <div class="submenu">
+
+    <a (click)="campania()" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+     Escolar
+    </a>
+
+    <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Ahorros
+    </a>
+     <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+      Extra Aportas
+    </a>
+
+ </div>
+
+</mat-expansion-panel>
+
+<!--
+<mat-expansion-panel class="seccion">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Elecciones
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+ <div class="submenu">
+
+    <a routerLink="/tarjetas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+     Cronograma
+    </a>
+
+    <a routerLink="/cuentas" style="font-size: 18px;padding: 14px 0px 14px 0px;">
+    Exoneración Multa
+    </a>
+
+ </div>
+
+</mat-expansion-panel>
+
+-->
+
+</div>

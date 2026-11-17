@@ -1,25 +1,144 @@
 <mat-sidenav-container   style="display: flex;flex-direction: column;top: 0; bottom: 0;left: 0;right: 0;flex: 1;height: 100%;background-color:transparent;"
 >
-<!--
- [mode]="isMobile() ? 'over' : 'side'"
+
+
+<mat-sidenav
+  [mode]="isMobile() ? 'over' : 'side'"
+  [opened]="isMobile() ? mobileMenuOpen() : true"
  (openedChange)="sincronizarMenu($event)"
   [style.width]="isMobile() ? '290px' : sidenavWidth()"
--->
-<mat-sidenav
-    #sidenav
-  
-  
   class="sidenav-responsive">
-   
+    <div [style.width]="sidenavWidth()"  style="   height: 100%; flex: 1;border-radius: 18px;padding: 11px;border: 2px;">
+      <span style="display: flex; justify-content: center">
+        <img [src]="logoImage()" [style.width]="logoWidth()" style="transition: all 600ms ease-in-out; margin: 20px 12px 8px 12px"/>
+      </span>
+      <div style="display: flex;"> </div>
+      <div style="height: 15px"></div>
+      
+      <div style="display: flex; justify-content: center; align-items: center ">
+        <div [style.width]="lineaWidth2()" class="line2"></div>
+
+      </div>
+      <div style="height: 15px"></div>
+      <mat-nav-list [style.height]="getAlturaCalculada()" style="overflow-y: auto; user-select: none" class="no-scrollbar">
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'dashboard'" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenuMovil()" >
+          <i class="bi bi-house icono" style="font-size: 22px;color: white;" matListItemIcon  ></i>
+          <div class="item-content mt-2"  >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Inicio</span>
+          </div>
+        </a>
+         <div style="height: 8px;"></div>
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'cursos'" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenuMovil()">
+          <i class="bi bi-journal-bookmark icono" style="font-size: 22px; " matListItemIcon  ></i>
+          <div class="item-content mt-2" >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Cursos</span>
+          </div>
+        </a>
+
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'capacitaciones'" [routerLinkActiveOptions]="{ exact: true }"  (click)="cerrarMenuMovil()">
+          <i class="bi-people-fill icono" style="font-size: 22px; " matListItemIcon  ></i>
+          <div class="item-content mt-2" >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Capacitaciones</span>
+          </div>
+        </a>
+
+        <div style="height: 8px;"></div>
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'mantenedor'" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenuMovil()" >
+          <i class="bi bi-tools  icono" style="font-size: 22px; " matListItemIcon  ></i>
+          <div class="item-content mt-2"  >
+            <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Mantenimiento</span>
+          </div>
+       </a>
+
+       <!--
+           <ng-container *ngFor="let item of menuItems()">
+         
+          <a mat-list-item class="menu-item" [routerLink]="item.route || null" routerLinkActive="selected-menu-item" (click)="item.subItems ? toggleSubMenu(item) : null"
+          >
+            <i [class]="item.icon" class="icono" matListItemIcon></i>
+
+            <div class="item-content">
+              <span class="item-label"       
+                style="color: rgb(73, 73, 73); font-size: 15px"
+                >{{ item.label }}
+              </span>
+              <i class="bi bi-chevron-down submenu-arrow" [class.rotated]="isSubMenuOpen(item)"
+              ></i>
+            </div>
+          </a>
+
+         
+
+          <mat-nav-list
+            *ngIf="item.subItems && isSubMenuOpen(item)"
+            style="padding: 0px 0px 0px 15px"
+          >
+            <ng-container *ngFor="let sub of item.subItems">
+              <a mat-list-item 
+                class="menu-item"
+                [routerLink]="sub.route || null"
+                routerLinkActive="selected-menu-item"
+                (click)="sub.subItems ? toggleSubMenu(sub, [item.label]) : null"
+              >
+                <i matListItemIcon [class]="sub.icon" class="icono"
+                  style="margin-right: 5px" 
+                ></i>
+                <div class="item-content">
+                  <span class="item-label" style="color: rgb(87, 87, 87);font-size: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{ sub.label }}</span
+                  >
+
+                  <i
+                    class="bi bi-chevron-down submenu-arrow"
+                    *ngIf="sub.subItems?.length"
+                    [class.rotated]="isSubMenuOpen(sub, [item.label])"
+                  ></i>
+                </div>
+              </a>
+             
+              <mat-nav-list *ngIf="sub.subItems && isSubMenuOpen(sub, [item.label])" style="padding: 0px 0px 0px 20px; "
+              >
+  <a *ngFor="let third of sub.subItems" mat-list-item class="menu-item" [routerLink]="third.route || null" routerLinkActive="selected-menu-item"
+                >
+                  <i matListItemIcon [class]="third.icon"
+                    class="icono"
+                    style="font-size: 15px"
+                  ></i>
+
+                  <div style="display: flex;"></div>
+                  <div class="item-content">
+                    <span class="item-label" style="color: rgb(222, 252, 247);font-size: 15px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                      "
+                      >{{ third.label }}</span
+                    >
+                    <i
+                      class="bi bi-chevron-down submenu-arrow"
+                      *ngIf="third.subItems?.length"
+                    ></i>
+                  </div>
+                </a>
+              </mat-nav-list>
+            </ng-container>
+          </mat-nav-list>
+        </ng-container>
+
+      -->
+    
+  </mat-nav-list>
+      <div style="display: flex; justify-content: center; align-items: center">
+        <div [style.width]="lineaWidth2()" class="line"></div>
+      </div>
+      <div style="text-align: center; margin-top: 8px; font-size: 12px">      
+          <span style="color: #fff200" *ngIf="erp()" > ERP FINANCIERO  </span>
+         <span><span class="texto_muy_grueso" style="color: white;font-size: 19px;">Aula</span><span clas="texto_fino" style="font-size: 18px;color:var(--Verdemanzana)">Virtual</span> </span>       
+      </div>
+    </div>
   </mat-sidenav>
 
 <mat-sidenav-content class="content contenido-responsive">
     <mat-toolbar style=" margin: 0;padding: 0;">
       <div style="display: flex; width: 100%; margin-top: 10px; border-radius: 12px;padding: 6px;background: #f6fffc ;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-    <!--
-        <button
-               type="button"
-              (click)="alternarMenu()"
+      <button
+              (click)="ListarMenu()"
               mat-icon-button
               class="example-icon"
               style="display: grid;place-content: center;"
@@ -27,13 +146,6 @@
           <i class="bi bi-justify" >         
           </i>        
         </button>
-      -->
-         <button mat-icon-button (click)="sidenav.toggle()"><!-- el toggle hace q hacer click oculte la barra-->
-        <mat-icon *ngIf="!sidenav.opened" style="color: white;">menu</mat-icon>
-        <mat-icon *ngIf="sidenav.opened" style="color: white;">close</mat-icon>  <!-- si esta cerrado cambia icono-->
-     </button>
-
-
         <div style="display: grid;place-content: center;">
         <span style="color: var(--Verdepetroleo2);">Aula<span class="texto_fino">Virtual </span> </span>
         </div>
@@ -63,7 +175,7 @@
         </form>
         -->
         <div style="width: 100px;"></div>
-        <span></span>
+        <span> </span>
         <span style="flex-grow: 1"></span>
         <div style="display: none">
           <div style="display: flex; flex-direction: column; margin-inline: 8px" >
