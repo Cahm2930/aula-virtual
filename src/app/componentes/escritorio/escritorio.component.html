@@ -3,8 +3,8 @@
 
 
 <mat-sidenav
-  [mode]="isMobile() ? 'over' : 'side'"
-  [opened]="isMobile() ? mobileMenuOpen() : true"
+  
+  [opened]="isMobile() ? mobileMenuOpen() : false"
  (openedChange)="sincronizarMenu($event)"
   [style.width]="isMobile() ? '290px' : sidenavWidth()"
   class="sidenav-responsive">
