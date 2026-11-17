@@ -92,7 +92,7 @@ export class EscritorioComponent {
   changeRole: any;
 
   private breakpointObserver = inject(BreakpointObserver);
-  isMobile = signal(false);
+  isMobile = signal(this.breakpointObserver.isMatched('(max-width: 767px)'));
   mobileMenuOpen = signal(false);
 
   getAlturaCalculada(): string {
@@ -131,7 +131,7 @@ export class EscritorioComponent {
       .subscribe((result) => {
         this.isMobile.set(result.matches);
 
-        if (result.matches) {
+        if (!result.matches) {
           this.mobileMenuOpen.set(false);
         }
       });
@@ -142,9 +142,9 @@ export class EscritorioComponent {
 
   alternarMenu(): void {
     if (this.isMobile()) {
-      this.mobileMenuOpen.set(!this.mobileMenuOpen());
+      this.mobileMenuOpen.update((abierto) => !abierto);
     } else {
-      this.collapsed.set(!this.collapsed());
+      this.collapsed.update((valor) => !valor);
     }
   }
 

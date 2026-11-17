@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CapacitacionService {
   private http = inject(HttpClient);
-  private url = `${environment.baseUrl}api/capacitaciones`;
+  private url = `${environment.baseUrl}aula/capacitaciones`;
 
   constructor() {}
 

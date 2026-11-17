@@ -69,7 +69,6 @@ export class MantenedorComponent {
   mostrarCapacitacion: boolean = true;
   mostrarCurso: boolean = false;
   displayedcolumnsCapacitacion = ['col1', 'col2', 'col3', 'col4', 'col5'];
-
   displayedcolumns = [
     'col1',
     'col2',
@@ -117,8 +116,6 @@ export class MantenedorComponent {
   onPageChange(event: any) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-
-    // this.listarRequerimientos();
   }
 
   highlightRow(i: any) {
@@ -146,6 +143,7 @@ export class MantenedorComponent {
   }
 
   verDetalle(lement?: any) {}
+
   cotizaciones(e?: any) {}
 
   fueratabla() {

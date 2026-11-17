@@ -26,6 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CapacitacionDTO } from '../../model/capacitacionDto';
 import { LeccionDTO } from '../../model/LecccionDto';
 import { CapacitacionService } from '../../service/capacitacion.service';
+import { Router } from '@angular/router';
+import { NotificacionService } from '../../service/notificacion.service';
 
 export interface Alternativa {
   texto: string;
@@ -90,6 +92,8 @@ export class DetalleCapacitacionComponent {
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private capacitacionService: CapacitacionService,
+    private router: Router,
+    private notificacionService: NotificacionService,
   ) {}
 
   ngOnInit(): void {
@@ -193,13 +197,18 @@ export class DetalleCapacitacionComponent {
     this.capacitacionService.guardar(formData).subscribe({
       next: (respuesta) => {
         console.log('Capacitación guardada:', respuesta);
+        this.router.navigate(['escritorio', 'mantenedor']);
+        this.notificacionService.mostrarMensaje(
+          'Capacitación creada con exito',
+        );
       },
       error: (error) => {
         console.error('Error al guardar:', error);
       },
     });
+  }
 
-    /*
+  /*
 
       this.capacitacionService.guardar(formData).subscribe({
         next: (respuesta) => {
@@ -211,7 +220,6 @@ export class DetalleCapacitacionComponent {
       });
 
     */
-  }
 
   seleccionarArchivo(event: Event): void {
     const input = event.target as HTMLInputElement;

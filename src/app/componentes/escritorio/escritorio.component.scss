@@ -502,7 +502,7 @@ scroll-container {
 
 /* Contenedor principal */
 .contenido-responsive {
-  padding: 0 0 0 20px;
+  padding: 0 0 0 8px;
   background-color: #f4f7fb;
   min-width: 0;
 }
@@ -511,7 +511,7 @@ scroll-container {
 .sidenav-responsive {
   border-radius: 18px;
   padding: 8px;
-  max-width: 85vw;
+  width: 308px !important;
 }
 
 /* Tablets */

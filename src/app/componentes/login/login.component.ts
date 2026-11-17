@@ -46,4 +46,8 @@ export class LoginComponent {
   regresar() {
     this.router.navigate(['inicio']);
   }
+
+  invitado() {
+    this.router.navigate(['escritorio', 'dashboard']);
+  }
 }

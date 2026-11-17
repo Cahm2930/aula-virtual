@@ -2,12 +2,13 @@
 >
 
 
- <mat-sidenav
+<mat-sidenav
   [mode]="isMobile() ? 'over' : 'side'"
   [opened]="isMobile() ? mobileMenuOpen() : true"
-  [style.width]="isMobile() ? '270px' : sidenavWidth()"
+  (openedChange)="mobileMenuOpen.set($event)"
+  [style.width]="isMobile() ? '290px' : sidenavWidth()"
   class="sidenav-responsive">
-    <div [style.width]="sidenavWidth()"  style="   height: 100%; flex: 1;border-radius: 18px;padding: 11px;">
+    <div [style.width]="sidenavWidth()"  style="   height: 100%; flex: 1;border-radius: 18px;padding: 11px;border: 2px;">
       <span style="display: flex; justify-content: center">
         <img [src]="logoImage()" [style.width]="logoWidth()" style="transition: all 600ms ease-in-out; margin: 20px 12px 8px 12px"/>
       </span>
@@ -20,21 +21,21 @@
       </div>
       <div style="height: 15px"></div>
       <mat-nav-list [style.height]="getAlturaCalculada()" style="overflow-y: auto; user-select: none" class="no-scrollbar">
-        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'dashboard'" [routerLinkActiveOptions]="{ exact: true }" >
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'dashboard'" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenuMovil()" >
           <i class="bi bi-house icono" style="font-size: 22px;color: white;" matListItemIcon  ></i>
           <div class="item-content mt-2"  >
             <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Inicio</span>
           </div>
         </a>
          <div style="height: 8px;"></div>
-        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'cursos'" [routerLinkActiveOptions]="{ exact: true }" >
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'cursos'" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenuMovil()">
           <i class="bi bi-journal-bookmark icono" style="font-size: 22px; " matListItemIcon  ></i>
           <div class="item-content mt-2" >
             <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Cursos</span>
           </div>
         </a>
 
-        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'capacitaciones'" [routerLinkActiveOptions]="{ exact: true }" >
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'capacitaciones'" [routerLinkActiveOptions]="{ exact: true }"  (click)="cerrarMenuMovil()">
           <i class="bi-people-fill icono" style="font-size: 22px; " matListItemIcon  ></i>
           <div class="item-content mt-2" >
             <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Capacitaciones</span>
@@ -42,7 +43,7 @@
         </a>
 
         <div style="height: 8px;"></div>
-        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'mantenedor'" [routerLinkActiveOptions]="{ exact: true }" >
+        <a mat-list-item class="menu-item" routerLinkActive="selected-menu-item" [routerLink]="'mantenedor'" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenuMovil()" >
           <i class="bi bi-tools  icono" style="font-size: 22px; " matListItemIcon  ></i>
           <div class="item-content mt-2"  >
             <span class="item-label" style="color: rgb(87, 86, 86); font-size: 16px; color: white;" >Mantenimiento</span>

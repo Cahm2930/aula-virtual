@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 })
 export class CursoService {
   private http = inject(HttpClient);
-  private url = `${environment.baseUrl}api/cursos`;
+  private url = `${environment.baseUrl}aula/cursos`;
 
   constructor() {}
 

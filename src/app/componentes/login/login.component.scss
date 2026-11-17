@@ -243,6 +243,17 @@
   transition: all .2s ease;
 }
 
+.invitado {
+  color:rgb(255, 42, 42);
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.invitado:hover {
+  text-decoration: underline;
+}
+
 .recuperar-password:hover {
   text-decoration: underline;
 }
@@ -388,7 +399,7 @@
   /* RECUPERAR CONTRASEÑA */
 
   .separacion-olvido {
-    height: 25px;
+    height: 15px;
   }
 
   .recuperar-password {
