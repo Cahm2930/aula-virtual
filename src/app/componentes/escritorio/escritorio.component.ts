@@ -154,6 +154,12 @@ export class EscritorioComponent {
     }
   }
 
+  sincronizarMenu(estado: boolean): void {
+    if (this.mobileMenuOpen() !== estado) {
+      this.mobileMenuOpen.set(estado);
+    }
+  }
+
   salir_sesion() {
     this.router.navigate(['']);
   }
