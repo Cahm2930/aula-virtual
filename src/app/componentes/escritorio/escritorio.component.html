@@ -1,12 +1,14 @@
 <mat-sidenav-container   style="display: flex;flex-direction: column;top: 0; bottom: 0;left: 0;right: 0;flex: 1;height: 100%;background-color:transparent;"
 >
-
-
-<mat-sidenav
-  
-  [opened]="isMobile() ? mobileMenuOpen() : false"
-
+<!--
+ [mode]="isMobile() ? 'over' : 'side'"
+ (openedChange)="sincronizarMenu($event)"
   [style.width]="isMobile() ? '290px' : sidenavWidth()"
+-->
+<mat-sidenav
+ 
+  [opened]="isMobile() ? mobileMenuOpen() : true"
+  
   class="sidenav-responsive">
     <div [style.width]="sidenavWidth()"  style="   height: 100%; flex: 1;border-radius: 18px;padding: 11px;border: 2px;">
       <span style="display: flex; justify-content: center">
