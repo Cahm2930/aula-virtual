@@ -6,7 +6,7 @@
   [style.width]="isMobile() ? '290px' : sidenavWidth()"
 -->
 <mat-sidenav
- 
+    #sidenav
   [opened]="isMobile() ? mobileMenuOpen() : true"
   
   class="sidenav-responsive">
@@ -139,7 +139,8 @@
 <mat-sidenav-content class="content contenido-responsive">
     <mat-toolbar style=" margin: 0;padding: 0;">
       <div style="display: flex; width: 100%; margin-top: 10px; border-radius: 12px;padding: 6px;background: #f6fffc ;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-      <button
+    <!--
+        <button
                type="button"
               (click)="alternarMenu()"
               mat-icon-button
@@ -149,6 +150,13 @@
           <i class="bi bi-justify" >         
           </i>        
         </button>
+      -->
+         <button mat-icon-button (click)="sidenav.toggle()"><!-- el toggle hace q hacer click oculte la barra-->
+        <mat-icon *ngIf="!sidenav.opened" style="color: white;">menu</mat-icon>
+        <mat-icon *ngIf="sidenav.opened" style="color: white;">close</mat-icon>  <!-- si esta cerrado cambia icono-->
+     </button>
+
+
         <div style="display: grid;place-content: center;">
         <span style="color: var(--Verdepetroleo2);">Aula<span class="texto_fino">Virtual </span> </span>
         </div>
