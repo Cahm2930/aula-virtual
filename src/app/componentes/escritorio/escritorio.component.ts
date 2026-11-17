@@ -142,8 +142,7 @@ export class EscritorioComponent {
 
   alternarMenu(): void {
     if (this.isMobile()) {
-      this.mobileMenuOpen.set(true);
-      // this.mobileMenuOpen.update((abierto) => !abierto);
+      this.mobileMenuOpen.update((abierto) => !abierto);
     } else {
       this.collapsed.update((valor) => !valor);
     }
