@@ -189,6 +189,52 @@ export class CapacitacionesComponent {
     });
   }
 
+  mostrar_pdf(pdf: any): void {
+    // Abrir la ventana inmediatamente por el clic del usuario
+    const ventana = window.open('about:blank', '_blank');
+
+    if (!ventana) {
+      console.error('El navegador bloqueó la nueva pestaña');
+      return;
+    }
+
+    ventana.document.write(`
+    <html>
+      <head><title>Cargando documento...</title></head>
+      <body style="font-family: Arial; text-align: center; padding: 40px;">
+        Cargando documento...
+      </body>
+    </html>
+  `);
+
+    this.recursoService.obtenerPdf(pdf.recursoDigitalId).subscribe({
+      next: (data: Blob) => {
+        if (!data || data.size === 0) {
+          ventana.close();
+          console.error('El archivo PDF está vacío');
+          return;
+        }
+
+        // Asegurar el tipo MIME del documento
+        const archivoPdf = new Blob([data], {
+          type: 'application/pdf',
+        });
+
+        const url = URL.createObjectURL(archivoPdf);
+
+        // Cargar el PDF en la ventana que ya se abrió
+        ventana.location.href = url;
+      },
+
+      error: (error) => {
+        ventana.close();
+        console.error('Error al abrir el PDF:', error);
+      },
+    });
+  }
+
+  /*
+
   mostrar_pdf(pdf: any) {
     console.log(pdf);
 
@@ -219,9 +265,8 @@ export class CapacitacionesComponent {
       },
     });
 
-    //const vari = 'Bases-para-Concurso-Plaza-GG.pdf';
-    // window.open(`/archivo/${vari}`, '_blank');
-  }
+   
+  } */
 
   abrirVideo(link: string) {
     const idVideo = this.obtenerIdVideo(link);
