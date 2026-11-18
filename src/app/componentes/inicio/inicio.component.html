@@ -1,4 +1,10 @@
+@if (loading) {
+  <div class="loading-overlay">
+    <app-cargando></app-cargando>
+  </div>
+}
 
+@if (!loading) {
 <!-- =========================
      ENCABEZADO
 ========================= -->
@@ -298,5 +304,7 @@
     </div>
 
   </div>
+
+}
 
 }
