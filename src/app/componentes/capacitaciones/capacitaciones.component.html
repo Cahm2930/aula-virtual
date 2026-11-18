@@ -63,6 +63,7 @@
             (click)="seleccionarCapacitacion(curso)">
 
             <!-- Icono -->
+             <div style="display: flex;flex: 1;">
             <div
               class="curso-icono"
               [style.background]="curso.color">
@@ -72,7 +73,7 @@
             </div>
 
             <!-- Información -->
-            <div class="curso-info">
+            <div class="curso-info" style="padding: 0px 0px 0px 10px;">
 
               <div class="LeonHeadBold curso-titulo">
                 {{ curso.titulo | titlecase }}
@@ -93,7 +94,7 @@
               </span>
 
             </div>
-
+            </div>
             <!-- Fecha -->
             <div class="curso-fecha">
 
