@@ -192,7 +192,7 @@ export class CapacitacionesComponent {
   mostrar_pdf(pdf: any) {
     console.log(pdf);
 
-    this.recursoService.obtenerPdf(33).subscribe({
+    this.recursoService.obtenerPdf(pdf.recursoDigitalId).subscribe({
       next: (data: Blob) => {
         if (!data || data.size === 0) {
           console.error('El archivo PDF está vacío');

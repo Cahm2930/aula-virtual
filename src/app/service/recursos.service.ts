@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class RecursosService {
   private http = inject(HttpClient);
-  private url = `${environment.baseUrl}aula/recursos`;
+  private url = `${environment.baseUrl}/archivo`;
 
   constructor() {}
 
