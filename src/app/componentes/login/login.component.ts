@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  a: any;
 
   constructor(
     private router: Router,
