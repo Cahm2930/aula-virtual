@@ -39,15 +39,14 @@ export class LoginComponent {
   }
 
   iniciarSesion() {
-    // this.router.navigate(['escritorio']);
     this.router.navigate(['escritorio', 'dashboard']);
   }
 
   regresar() {
-    this.router.navigate(['inicio']);
+    this.router.navigate(['']);
   }
 
   invitado() {
-    this.router.navigate(['escritorio', 'dashboard']);
+    this.router.navigate(['escritorio', 'invitado']);
   }
 }

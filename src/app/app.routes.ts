@@ -8,6 +8,7 @@ import { MantenedorComponent } from './componentes/mantenedor/mantenedor.compone
 import { DetalleCursoComponent } from './componentes/detalle-curso/detalle-curso.component';
 import { CapacitacionesComponent } from './componentes/capacitaciones/capacitaciones.component';
 import { DetalleCapacitacionComponent } from './componentes/detalle-capacitacion/detalle-capacitacion.component';
+import { InvitadoComponent } from './componentes/invitado/invitado.component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
       { path: 'detalle-capacitacion', component: DetalleCapacitacionComponent },
 
       { path: 'capacitaciones', component: CapacitacionesComponent },
+      { path: 'invitado', component: InvitadoComponent },
     ],
   },
 ];
