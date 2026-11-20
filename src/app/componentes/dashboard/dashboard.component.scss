@@ -1,162 +1,344 @@
 
+/* CONTENEDOR PRINCIPAL */
 
-.marco 
-{
+.marco {
   display: flex;
   flex-direction: column;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  min-height: calc(100vh - 85px);
+  box-sizing: border-box;
+  padding: 10px 4px;
+}
+
+.contenedor-perfil {
   flex: 1;
-  height: calc(100% - 85px);
-  margin-top: 10px;
-  margin-left: 4px;
-  margin-right: 4px;
+  min-width: 0;
+  margin: 0 8px 8px;
+  background: white;
+  border-radius: 18px;
+
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.contenido-perfil {
+  padding: 24px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.bienvenida {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .titulo-gradiente {
-    font-size: 25px;
-    padding: 10px;
+  font-size: 25px;
+  padding: 10px;
 
-    background: linear-gradient(
-        90deg,
-        var(--Verdepetroleo) 0%,
-        var(--Verdemanzana) 60%,
-        var(--AmarilloOro) 100%
-    );
+  background: linear-gradient(
+    90deg,
+    var(--Verdepetroleo) 0%,
+    var(--Verdemanzana) 60%,
+    var(--AmarilloOro) 100%
+  );
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    background-clip: text;
-    color: transparent;
-}
-.info-card{
-
-    display:flex;
-    align-items:center;
-    gap:18px;
-
-    padding:18px;
-
-    border-radius:16px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.06);
-
-    transition:.3s;
-    border: 1px solid rgb(236, 234, 234);
-
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
-.info-card:hover{
+.subtitulo {
+  color: rgb(72, 72, 72);
+  line-height: 1.5;
+  margin-left: 10px;
+}
 
-    transform:translateY(-4px);
+.fecha {
+  color: gray;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* TARJETAS DE INFORMACIÓN */
+
+.tarjetas {
+  margin-top: 10px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  min-height: 105px;
+  height: 100%;
+  box-sizing: border-box;
+
+  border-radius: 16px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+
+  transition: transform .3s;
+  border: 1px solid rgb(236, 234, 234);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+}
+
+.info-texto {
+  min-width: 0;
+}
+
+.icono {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  background: white;
+  font-size: 24px;
+}
+
+.titulo {
+  font-weight: 600;
+  color: #4d4d4d;
+  margin-bottom: 4px;
+}
+
+.detalle {
+  color: #8d8d8d;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* COLORES */
+
+.amarillo {
+  background: #fff8e6;
+}
+
+.verde {
+  background: #e8f9ef;
+}
+
+.morado {
+  background: #f2ecff;
+}
+
+.rosado {
+  background: #fff0ec;
+}
+
+/* ESTADÍSTICAS */
+
+.estadistica {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  height: 100%;
+  box-sizing: border-box;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+  border: 1px solid rgb(236, 234, 234);
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.cabecera-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cabecera-titulo i {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.valor {
+  color: #10b981;
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  color: #666;
+  font-size: 14px;
+}
+
+.fila strong {
+  white-space: nowrap;
+}
+
+/* TABLETS */
+
+@media (max-width: 991px) {
+
+  .contenido-perfil {
+    padding: 20px;
+  }
+
+  .estadistica {
+    padding: 18px;
+  }
 
 }
 
-.icono{
+/* CELULARES */
 
-    width:52px;
-    height:52px;
+@media (max-width: 767px) {
 
-    border-radius:12px;
+  .marco {
+    min-height: calc(100vh - 70px);
+    padding: 5px 2px 10px;
+  }
 
-    display:grid;
-    place-items:center;
+  .contenedor-perfil {
+    margin: 0 3px 5px;
+    border-radius: 14px;
+  }
 
-    background:white;
+  .contenido-perfil {
+    padding: 15px 12px;
+  }
 
-    font-size:24px;
+  /* ENCABEZADO */
 
-}
+  .encabezado {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
 
-.titulo{
+  .titulo-gradiente {
+    font-size: 23px;
+    padding: 5px;
+  }
 
-    font-weight:600;
+  .subtitulo {
+    font-size: 13px;
+    margin-left: 5px;
+  }
 
-    color:#4d4d4d;
+  .fecha {
+    align-self: flex-end;
+    font-size: 12px;
+  }
 
-}
+  /* TARJETAS */
 
-.detalle{
+  .info-card {
+    min-height: 90px;
+    padding: 14px;
+    gap: 13px;
+  }
 
-    color:#8d8d8d;
+  .icono {
+    width: 46px;
+    height: 46px;
+    font-size: 21px;
+  }
 
-    font-size:14px;
+  .titulo {
+    font-size: 15px;
+  }
 
-}
+  .detalle {
+    font-size: 13px;
+  }
 
-.amarillo{
+  /* ESTADÍSTICAS */
 
-    background:#fff8e6;
+  .estadisticas {
+    margin-top: 15px !important;
+  }
 
-}
+  .estadistica {
+    padding: 18px;
+    border-radius: 14px;
+  }
 
-.verde{
+  .cabecera {
+    margin-bottom: 15px;
+  }
 
-    background:#e8f9ef;
+  .cabecera-titulo i {
+    font-size: 23px;
+  }
 
-}
+  .valor {
+    font-size: 20px;
+  }
 
-.morado{
-
-    background:#f2ecff;
-
-}
-
-.rosado{
-
-    background:#fff0ec;
-
-}
-
-.estadistica{
-
-    background:white;
-
-    border-radius:18px;
-
-    padding:22px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.06);
-    border: 1px solid rgb(236, 234, 234);
-
-}
-
-.cabecera{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
-
-    font-weight:600;
-
-}
-
-.valor{
-
-    color:#10b981;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-}
-
-.fila{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-top:12px;
-
-    color:#666;
+  .fila {
+    font-size: 13px;
+  }
 
 }
 
+/* CELULARES PEQUEÑOS */
+
+@media (max-width: 380px) {
+
+  .contenido-perfil {
+    padding: 12px 9px;
+  }
+
+  .titulo-gradiente {
+    font-size: 21px;
+  }
+
+  .info-card {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .icono {
+    width: 42px;
+    height: 42px;
+    font-size: 19px;
+  }
+
+  .estadistica {
+    padding: 15px;
+  }
+
+  .fila {
+    font-size: 12px;
+  }
+
+}
